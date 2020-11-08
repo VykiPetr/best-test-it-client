@@ -12,9 +12,7 @@ function OurNavbar(props) {
    
     return (
         <nav>
-            
             <Link to='/' style={textStyle}>Landing </Link>
-            
             <Link to='/sign-up' style={textStyle}>Sign Up </Link>
             <Link to='/sign-in' style={textStyle}>Sign In </Link>
             <Link to='/view-projects' style={textStyle}>Projects </Link>
