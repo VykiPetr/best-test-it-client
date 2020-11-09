@@ -96,7 +96,7 @@ function App(props) {
       projectVersion: projectVersion
     }
 
-    axios.post(`http://localhost:5000/api/project/${projectId}/edit`, projectEditData)
+    axios.post(`http://localhost:5000/api/project//edit`, projectEditData)
       .then(()=>{
         history.push(`/profile/${loggedInUser._id}`)
       })
