@@ -68,6 +68,7 @@ function App() {
       .then(()=>{
         setLoggedInUser(null)
         console.log('loggin out',loggedInUser)
+        history.push(`/`)
       })
   }
 
