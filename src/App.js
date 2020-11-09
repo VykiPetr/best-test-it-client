@@ -18,14 +18,14 @@ function App(props) {
 
   useEffect(() => {
     console.log('logged in user is', loggedInUser)
+    
     return () => {
-      
     }
   })
 
   const handleSignIn = (e) => {
     e.preventDefault()
-    const [email, password] = e.target
+    const {email, password} = e.target
     console.log('Sign in', email.value, password.value)
     let signingIn = {
       email: email.value,
@@ -35,14 +35,14 @@ function App(props) {
       .then((response)=>{
         setLoggedInUser(response.data)
         console.log('logged in', loggedInUser)
-        // history.push(`/profile/${response.data._id}`)
+        history.push(`/profile/${response.data._id}`)
       })
   }
 
   const handleSignup = (e) => {
     e.preventDefault()
     console.log('Sign up')
-    const [username, email, password] = e.target
+    const {username, email, password} = e.target
     let signingUp = {
       username: username.value,
       email: email.value,
@@ -67,7 +67,7 @@ function App(props) {
 
   const handleProjectAdd = (e) => {
     e.preventDefault()
-    const [appName, appDescription, appTools, deploymentLink, repoLink, appLogo, projectVersion] = e.target
+    const {appName, appDescription, appTools, deploymentLink, repoLink, appLogo, projectVersion} = e.target
     let projectCreationData = {
       appName: appName,
       appDescription: appDescription,
@@ -85,7 +85,7 @@ function App(props) {
 
   const handleProjectEdit = (e) => {
     e.preventDefault()
-    const [appName, appDescription, appTools, deploymentLink, repoLink, appLogo, projectVersion] = e.target
+    const {appName, appDescription, appTools, deploymentLink, repoLink, appLogo, projectVersion} = e.target
     let projectEditData = {
       appName: appName,
       appDescription: appDescription,
