@@ -11,17 +11,23 @@ import AddProjectForm from './components/AddProjectForm'
 import EditProjectForm from './components/EditProjectForm'
 // import AProject from './components/AProject'
 
-function App(props) {
+function App() {
 
   let history = useHistory();
   const [loggedInUser, setLoggedInUser] = useState(null)
 
   useEffect(() => {
-    console.log('logged in user is', loggedInUser)
-    
+   
+    if (!loggedInUser) {
+      axios.get(`http://localhost:5000/api/user`, {withCredentials: true})
+        .then((response)=>{
+          setLoggedInUser(response.data)
+          console.log('logged in user is', response.data)
+        })
+    }
     return () => {
     }
-  })
+  }, [])
 
   const handleSignIn = (e) => {
     e.preventDefault()
@@ -31,7 +37,7 @@ function App(props) {
       email: email.value,
       password: password.value
     }
-    axios.post(`http://localhost:5000/api/signin`, signingIn)
+    axios.post(`http://localhost:5000/api/signin`, signingIn, {withCredentials: true})
       .then((response)=>{
         setLoggedInUser(response.data)
         console.log('logged in', loggedInUser)
@@ -48,7 +54,7 @@ function App(props) {
       email: email.value,
       password: password.value,
     }
-    axios.post(`http://localhost:5000/api/signup`, signingUp)
+    axios.post(`http://localhost:5000/api/signup`, signingUp, {withCredentials: true})
       .then((response)=>{
         console.log('signing up', response.data)
         setLoggedInUser(response.data)
@@ -58,7 +64,7 @@ function App(props) {
 
   const handleLogout = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:5000/api/logout')
+    axios.post('http://localhost:5000/api/logout', {withCredentials: true})
       .then(()=>{
         setLoggedInUser(null)
         console.log('loggin out',loggedInUser)
@@ -77,7 +83,7 @@ function App(props) {
       // appLogo: appLogo.value,
       projectVersion: projectVersion.value
     }
-    axios.post('http://localhost:5000/api/project/create', projectCreationData)
+    axios.post('http://localhost:5000/api/project/create', projectCreationData, {withCredentials: true})
       .then(()=>{
         history.push(`/profile/${loggedInUser._id}`)
       })
@@ -96,7 +102,7 @@ function App(props) {
       projectVersion: projectVersion.value
     }
 
-    axios.post(`http://localhost:5000/api/project//edit`, projectEditData)
+    axios.post(`http://localhost:5000/api/project//edit`, projectEditData, {withCredentials: true})
       .then(()=>{
         history.push(`/profile/${loggedInUser._id}`)
       })
@@ -113,8 +119,8 @@ function App(props) {
         <Route path={`/add-project`} render={()=>{
           return <AddProjectForm onProjectAdd={handleProjectAdd} loggedIn={loggedInUser}/>
         }}/>
-        <Route path={`/profile/:profileId`} render={()=>{
-          return <ProfileView loggedIn={loggedInUser} />
+        <Route path={`/profile/:profileId`} render={(routeProps)=>{
+          return <ProfileView loggedIn={loggedInUser} {...routeProps} />
         }}/>
         <Route exact path='/' render={() => {
           return <Landing />
