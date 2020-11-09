@@ -69,13 +69,13 @@ function App(props) {
     e.preventDefault()
     const {appName, appDescription, appTools, deploymentLink, repoLink, appLogo, projectVersion} = e.target
     let projectCreationData = {
-      appName: appName,
-      appDescription: appDescription,
-      appTools: appTools,
-      deploymentLink: deploymentLink,
-      repoLink: repoLink,
-      appLogo: appLogo,
-      projectVersion: projectVersion
+      appName: appName.value,
+      appDescription: appDescription.value,
+      appTools: appTools.value,
+      deploymentLink: deploymentLink.value,
+      repoLink: repoLink.value,
+      // appLogo: appLogo.value,
+      projectVersion: projectVersion.value
     }
     axios.post('http://localhost:5000/api/project/create', projectCreationData)
       .then(()=>{
@@ -87,13 +87,13 @@ function App(props) {
     e.preventDefault()
     const {appName, appDescription, appTools, deploymentLink, repoLink, appLogo, projectVersion} = e.target
     let projectEditData = {
-      appName: appName,
-      appDescription: appDescription,
-      appTools: appTools,
-      deploymentLink: deploymentLink,
-      repoLink: repoLink,
-      appLogo: appLogo,
-      projectVersion: projectVersion
+      appName: appName.value,
+      appDescription: appDescription.value,
+      appTools: appTools.value,
+      deploymentLink: deploymentLink.value,
+      repoLink: repoLink.value,
+      // appLogo: appLogo.value,
+      projectVersion: projectVersion.value
     }
 
     axios.post(`http://localhost:5000/api/project//edit`, projectEditData)
