@@ -6,8 +6,7 @@ function ProjectView(props) {
 
     useEffect(() => {
         
-        return () => {
-        }
+        
     }, [])
 
     return (
@@ -36,7 +35,8 @@ function ProjectView(props) {
                     {ProjectData.appTools}
                 </div>
                 <div>
-                    made by <Link to={`/profile`}>{ProjectData._id}</Link>
+                    <p>made by <Link to={`/profile`}>{ProjectData._id}</Link></p>
+                    <p>{ProjectData.appDescription}</p>
                 </div>
             </div>
         </div>

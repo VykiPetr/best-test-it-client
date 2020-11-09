@@ -18,7 +18,7 @@ function ProfileView(props) {
                 axios.get(`http://localhost:5000/api/userProjects/${props.match.params.profileId}`, {withCredentials: true})
                     .then((response3) => {
                         setUserProjects(response3.data)
-                        console.log('we got these projects', response)
+                        console.log('we got these projects', response3)
                         if (response2.data._id === response._id){
                             setLoggedInUser(true)
                         }
@@ -49,14 +49,15 @@ function ProfileView(props) {
 
     return (
         <div>
-            {
-                props.loggedIn._id ? <Link to={`/edit-profile/${props.loggedIn._id}`}>Edit profile</Link> : null
-            }
+            
             <div>
                 <img src={profile.userImage} alt='profile avatar'/>
                 <div>
                     <h2>{profile.username}</h2>
                     {/* <button>Send Message</button> */}
+                    {
+                    props.loggedIn ? <Link to={`/edit-profile/${props.loggedIn._id}`}>Edit profile</Link> : null
+                    }
                 </div>
             </div>
             <div>

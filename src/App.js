@@ -64,7 +64,7 @@ function App() {
 
   const handleLogout = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:5000/api/logout', {withCredentials: true})
+    axios.post('http://localhost:5000/api/logout', {} ,{withCredentials: true})
       .then(()=>{
         setLoggedInUser(null)
         console.log('loggin out',loggedInUser)
@@ -74,14 +74,31 @@ function App() {
 
   const handleProjectAdd = (e) => {
     e.preventDefault()
-    const {appName, appDescription, appTools, deploymentLink, repoLink, appLogo, projectVersion} = e.target
+    const {appName, appDescription, appTools, deploymentLink, repoLink, uploadedAppLogo, appLogoLink, projectVersion} = e.target
+    let appLogo = ''
+
+    if (uploadedAppLogo) {
+      let imageFile = uploadedAppLogo.files[0]
+      console.log(uploadedAppLogo.files[0])
+      let uploadForm = new FormData()
+      uploadForm.append('logoUrl', imageFile)
+      console.log(uploadForm)
+      axios.post(`http://localhost:5000/api/logo-upload`, uploadForm, {withCredentials: true})
+        .then(()=>{
+
+        })
+
+      appLogo = 'https://www.severnedgevets.co.uk/sites/default/files/styles/medium/public/guides/kitten.png?itok=Wpg9ghjs'
+    } else {
+      appLogo = appLogo.value
+    }
     let projectCreationData = {
       appName: appName.value,
       appDescription: appDescription.value,
       appTools: appTools.value,
       deploymentLink: deploymentLink.value,
       repoLink: repoLink.value,
-      // appLogo: appLogo.value,
+      appLogo: appLogo,
       projectVersion: projectVersion.value
     }
     axios.post('http://localhost:5000/api/project/create', projectCreationData, {withCredentials: true})
@@ -99,7 +116,7 @@ function App() {
       appTools: appTools.value,
       deploymentLink: deploymentLink.value,
       repoLink: repoLink.value,
-      // appLogo: appLogo.value,
+      appLogo: appLogo.value,
       projectVersion: projectVersion.value
     }
 

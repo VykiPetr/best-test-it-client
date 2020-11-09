@@ -4,22 +4,16 @@
 
 // function ViewAllProjects() {
 //     const [allProjects, setAllProjects] = useState(null)
-
 //     const getAllProjects = () => {
 //         axios.get(`http://localhost:5000/api/project`)
 //             .then((response)=>{
 //                 setAllProjects(response.data)
 //             })
 //     }
-
 //     useEffect(()=>{
-
 //         getAllProjects()
-    
 //     }, [])
-
 //     return (
-
 //         <div>
 //             {
 //                 allProjects.map((project, i)=>{
