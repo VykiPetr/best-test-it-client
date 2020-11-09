@@ -4,7 +4,7 @@ import axios from 'axios'
 export default function EditProjectForm(props) {
 
         const [LinkButton, setLinkButton] = useState(false)
-        const [Project, setProject] = useState(null)
+        const [Project, setProject] = useState({})
     
         const handleLinkButton = () => {
             if (LinkButton) {

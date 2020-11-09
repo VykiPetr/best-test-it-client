@@ -5,25 +5,43 @@ import ProjectHeader from './ProjectHeader'
 
 function ProfileView(props) {
 
-    const [profile, setProfile] = useState(null)
-    const [userProjects, setUserProjects] = useState(null)
+    const [profile, setProfile] = useState({})
+    const [userProjects, setUserProjects] = useState([])
     const [LoggedInUser, setLoggedInUser] = useState(null)
+    
+    const getProfileInfo = (response) => {
 
-    //component did mount doesnt work
-    useEffect(() => {
-        axios.get(`http://localhost:5000/api/profile/${props.match.params.profileId}`)
-            .then((response)=>{
-                setProfile(response.data)
+        axios.get(`http://localhost:5000/api/profile/${props.match.params.profileId}`, {withCredentials: true})
+            .then((response2)=>{
+                setProfile(response2.data)
                 console.log('profile view loaded this', profile)
-            axios.get(`http://localhost:5000/api/userProjects/${props.match.params.profileId}`)
-                .then((response) => {
-                    setUserProjects(response.data)
-                    console.log('we got these projects', userProjects)
-                    if (profile._id === props.loggedIn._id){
-                        setLoggedInUser(true)
-                    }
-                })
-        })
+                axios.get(`http://localhost:5000/api/userProjects/${props.match.params.profileId}`, {withCredentials: true})
+                    .then((response3) => {
+                        setUserProjects(response3.data)
+                        console.log('we got these projects', response)
+                        if (response2.data._id === response._id){
+                            setLoggedInUser(true)
+                        }
+                    })
+            })
+
+    }
+
+    //component did mount does work/
+    useEffect(() => {
+        if (!props.loggedIn) {
+            axios.get(`http://localhost:5000/api/user`, {withCredentials: true})
+              .then((response)=>{
+                console.log('not else')
+                setLoggedInUser(response.data)
+                getProfileInfo(response.data)
+              })
+        } else {
+            console.log('else')
+          getProfileInfo(props.loggedIn)
+        }
+        console.log(props.match.params)
+        
         return () => {
         }
     }, [])
@@ -32,7 +50,7 @@ function ProfileView(props) {
     return (
         <div>
             {
-                LoggedInUser ? <Link to={`/edit-profile/${props.loggedIn._id}`}>Edit profile</Link> : null
+                props.loggedIn._id ? <Link to={`/edit-profile/${props.loggedIn._id}`}>Edit profile</Link> : null
             }
             <div>
                 <img src={profile.userImage} alt='profile avatar'/>
@@ -56,7 +74,7 @@ function ProfileView(props) {
                 })
             }
             {
-                LoggedInUser ? <Link to='/add-project'>Add a project </Link> : null
+                LoggedInUser ? <Link to='/add-project'>Add a project </Link> : null 
             }
         </div>
     )
