@@ -7,21 +7,23 @@ function ProfileView(props) {
 
     const [profile, setProfile] = useState(null)
     const [userProjects, setUserProjects] = useState(null)
+    const [LoggedInUser, setLoggedInUser] = useState(null)
 
     //component did mount doesnt work
     useEffect(() => {
         axios.get(`http://localhost:5000/api/profile/${props.match.params.profileId}`)
             .then((response)=>{
-                
                 setProfile(response.data)
                 console.log('profile view loaded this', profile)
             axios.get(`http://localhost:5000/api/userProjects/${props.match.params.profileId}`)
                 .then((response) => {
                     setUserProjects(response.data)
                     console.log('we got these projects', userProjects)
+                    if (profile._id === props.loggedIn._id){
+                        setLoggedInUser(true)
+                    }
                 })
         })
-        
         return () => {
         }
     }, [])
@@ -29,6 +31,9 @@ function ProfileView(props) {
 
     return (
         <div>
+            {
+                LoggedInUser ? <Link to={`/edit-profile/${props.loggedIn._id}`}>Edit profile</Link> : null
+            }
             <div>
                 <img src={profile.userImage} alt='profile avatar'/>
                 <div>
@@ -50,7 +55,9 @@ function ProfileView(props) {
                     return <ProjectHeader project={project} key={i} />
                 })
             }
-            <Link to='/add-project'>Add a project </Link>
+            {
+                LoggedInUser ? <Link to='/add-project'>Add a project </Link> : null
+            }
         </div>
     )
 }

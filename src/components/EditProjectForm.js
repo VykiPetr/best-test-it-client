@@ -11,7 +11,7 @@ export default function EditProjectForm(props) {
                 setLinkButton(false)
             } else {
                 setLinkButton(true)
-            }
+            }}
 
 
         //component mount
@@ -43,8 +43,8 @@ export default function EditProjectForm(props) {
             <input name='repoLink' type='text' value={Project.repoLink}></input>
             
 
-            {
-                {/* WHY the fuck is this not working , tried if() and terniary*/}
+            {/* {
+               
                 if (LinkButton){
                 return (
                 <div>
@@ -60,7 +60,7 @@ export default function EditProjectForm(props) {
                 </div>
                 )
                 }
-            }
+            } */}
             {
                 LinkButton ? <button onClick={handleLinkButton}>Or actually I want to upload</button> : <button onClick={handleLinkButton}>I have a link!</button>
             }

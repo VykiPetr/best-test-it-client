@@ -30,8 +30,8 @@ function AddProjectForm(props) {
             <input name='repoLink' type='text' placeholder='github.com/john/doeProject'></input>
             
 
-            {
-                {/* WHY the fuck is this not working , tried if() and terniary*/}
+            {/* {
+            
                 if (LinkButton){
                 return (
                 <div>
@@ -47,7 +47,7 @@ function AddProjectForm(props) {
                 </div>
                 )
                 }
-            }
+            } */}
             {
                 LinkButton ? <button onClick={handleLinkButton}>Or actually I want to upload</button> : <button onClick={handleLinkButton}>I have a link!</button>
             }
