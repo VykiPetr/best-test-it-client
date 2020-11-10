@@ -64,7 +64,7 @@ function App() {
 
   const handleLogout = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:5000/api/logout', {withCredentials: true})
+    axios.post('http://localhost:5000/api/logout', {} ,{withCredentials: true})
       .then(()=>{
         setLoggedInUser(null)
         console.log('loggin out',loggedInUser)
