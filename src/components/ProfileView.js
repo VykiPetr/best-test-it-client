@@ -21,6 +21,8 @@ function ProfileView(props) {
                         console.log('we got these projects', response3)
                         if (response2.data._id === response._id){
                             setLoggedInUser(true)
+                        } else {
+                            setLoggedInUser(null)
                         }
                     })
             })
@@ -56,7 +58,7 @@ function ProfileView(props) {
                     <h2>{profile.username}</h2>
                     {/* <button>Send Message</button> */}
                     {
-                    props.loggedIn ? <Link to={`/edit-profile/${props.loggedIn._id}`}>Edit profile</Link> : null
+                        LoggedInUser ? <Link to={`/edit-profile/${props.loggedIn._id}`}>Edit profile</Link> : null
                     }
                 </div>
             </div>
