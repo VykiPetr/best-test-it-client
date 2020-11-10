@@ -11,6 +11,8 @@ import AddProjectForm from './components/AddProjectForm'
 import EditProjectForm from './components/EditProjectForm'
 import EditProfile from './components/EditProfile'
 import ProfileProject from './components/ProjectView'
+import ViewAllProjects from './components/ViewAllProjects';
+// import AProject from './components/AProject'
 
 function App() {
 
@@ -205,6 +207,12 @@ function App() {
         <Route path='/sign-up' render={() => {
           return <SignUp onSignUp={handleSignup}/>
         }} />
+        <Route path='/view-projects' render={() => {
+          return <ViewAllProjects />
+        }}
+
+
+        />
         
       </Switch>
     </div>
