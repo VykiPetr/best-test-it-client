@@ -7,6 +7,7 @@ function ProjectView(props) {
     const [ProjectData, setProjectData] = useState({})
     const [LoggedInUser, setLoggedInUser] = useState(null)
     const [ProjectOwner, setProjectOwner] = useState(false)
+    const [Likes, setLikes] = useState([])
 
     useEffect(() => {
         axios.get(`http://localhost:5000/api/project/${props.match.params.projectId}`)
@@ -14,9 +15,10 @@ function ProjectView(props) {
                 axios.get(`http://localhost:5000/api/user`, {withCredentials: true})
                     .then((response2)=>{
                         setLoggedInUser(response2.data)
-                        console.log('logged in user is', response.data)
                         setProjectData(response.data)
                         setLoggedInUser(props.loggedIn)
+                        setLikes(response.data.likes)
+                        console.log(response2.data.likes)
                         if (response2.data._id === response.data.userRefId){
                             setProjectOwner(true)
                         } else {
@@ -30,9 +32,14 @@ function ProjectView(props) {
         e.preventDefault()
         console.log('like button clicked')
         let data = {
-            
+            userId: LoggedInUser,
+            projectId: ProjectData._id,
         }
-        axios.post(`http://localhost:5000/api/projectLike`, data)
+        axios.post(`http://localhost:5000/api/projectLike`, data, {withCredentials: true})
+            .then((response)=>{
+                console.log(response)
+                setLikes(response.data.likes)
+            })
     }
 
     const onDeleteClick = (e) => {
@@ -45,7 +52,7 @@ function ProjectView(props) {
             <div>
                 <div>
                 <div>
-                    <Link onClick={onLikeClick}>{ProjectData.likes} Likes</Link>
+                    <Link onClick={onLikeClick}>{Likes.length} Likes</Link>
                     <p>{ProjectData.projectVersion}</p>
                 </div>
                 <div>
