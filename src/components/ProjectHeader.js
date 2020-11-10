@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 
+
 function ProjectHeader(props) {
 
     const {appName, appLogo, likes, _id} = props.project
@@ -12,7 +13,7 @@ function ProjectHeader(props) {
 
     return (
         <div>
-            <Link to={`/project/${_id}`}>
+            <Link style={{textDecoration: "none"}} to={`/project/${_id}`}>
                 <div>
                     <img style={{width:"50px", height:"50px"}} src={appLogo}/>
                 </div>
