@@ -1,4 +1,20 @@
 import React, {useState} from 'react'
+import Select from 'react-select';
+// import {appToolOptions} from '../toolsOptions.json'
+const appToolOptions =
+    [
+        { value: "Javascript", label: "Javascript"}, 
+        { value: "MongoDB", label: "MongoDB"}, 
+        { value: "Beer", label: "Beer"},
+        { value: "Express", label: "Express"},
+        { value: "React", label: "React"},
+        { value: "HTML", label: "HTML"},
+        { value: "CSS", label: "CSS"},
+        { value: "CSS", label: "CSS"},
+        { value: "CSS", label: "CSS"},
+        { value: "CSS", label: "CSS"},
+        { value: "CSS", label: "CSS"},
+    ]
 
 function AddProjectForm(props) {
 
@@ -14,7 +30,9 @@ function AddProjectForm(props) {
     }
 
     return (
+        
         <form onSubmit={props.onProjectAdd}>
+        
             <h3>What is the name of your project?</h3>
             <input name='appName' type='text' placeholder='Awesome Project'></input>
             
@@ -22,7 +40,13 @@ function AddProjectForm(props) {
             <input name='appDescription' type='text' placeholder='It is Awesome!'></input>
             
             <h3>What are you using to create/develop this</h3>
-            <input name='appTools' type='text' placeholder='React, MongoDB, NodeJs'></input>
+            <Select
+                isMulti
+                name="appToolsData"
+                options={appToolOptions}
+                className="basic-multi-select"
+                classNamePrefix="select"
+            />
             
             <h3>What is the link of the deployed project?</h3>
             <input name='deploymentLink' type='text' placeholder='awesome-project.herokuapp.com'></input>

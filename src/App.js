@@ -73,14 +73,14 @@ function App() {
       })
   }
 
-  const handleCreateProject = (imageSource, appName, appDescription, appTools, deploymentLink, repoLink, projectVersion) => {
+  const handleCreateProject = (appLogo, appName, appDescription, appTools, deploymentLink, repoLink, projectVersion) => {
     let projectCreationData = {
       appName: appName,
       appDescription: appDescription,
       appTools: appTools,
       deploymentLink: deploymentLink,
       repoLink: repoLink,
-      appLogo: imageSource,
+      appLogo: appLogo,
       projectVersion: projectVersion
     }
     axios.post('http://localhost:5000/api/project/create', projectCreationData, {withCredentials: true})
@@ -91,26 +91,33 @@ function App() {
 
   const handleProjectAdd = (e) => {
     e.preventDefault()
-    const {appName, appDescription, appTools, deploymentLink, repoLink, uploadedAppLogo, appLogoLink, projectVersion} = e.target
+    const {appName, appDescription, appToolsData, deploymentLink, repoLink, uploadedAppLogo, appLogoLink, projectVersion} = e.target
     let appLogo = ''
-  
+    let appTools = []
+    if (appToolsData.length > 1) {
+      for (let i = 0; i < appToolsData.length; i++) {
+        appTools.push(appToolsData[i].value)
+      } 
+    } else {
+      appTools.push(appToolsData.value)
+    }
+    console.log(appTools)
     if (uploadedAppLogo) {
       let imageFile = uploadedAppLogo.files[0]
       console.log(uploadedAppLogo.files[0])
       let uploadForm = new FormData()
       uploadForm.append('logoUrl', imageFile)
-      console.log(uploadForm)
-
       axios.post(`http://localhost:5000/api/logo-upload`, uploadForm, {withCredentials: true})
         .then((response)=>{
-          handleCreateProject(response.data.image, appName.value, appDescription.value, appTools.value, deploymentLink.value, repoLink.value, projectVersion.value)
+          appLogo = response.data.appLogo
+          handleCreateProject(appLogo, appName.value, appDescription.value, appTools, deploymentLink.value, repoLink.value, projectVersion.value)
         })
-    } else if (appLogoLink) {
-      appLogo = appLogo.value
-      handleCreateProject(appLogo, appName.value, appDescription.value, appTools.value, deploymentLink.value, repoLink.value, projectVersion.value)
-    } else {
+    } else if (appLogoLink.value.length == 0) {
       appLogo = 'https://www.severnedgevets.co.uk/sites/default/files/styles/medium/public/guides/kitten.png?itok=Wpg9ghjs'
-      handleCreateProject(appLogo, appName.value, appDescription.value, appTools.value, deploymentLink.value, repoLink.value, projectVersion.value)
+      handleCreateProject(appLogo, appName.value, appDescription.value, appTools, deploymentLink.value, repoLink.value, projectVersion.value)
+    } else if (appLogoLink) {
+      appLogo = appLogoLink.value
+      handleCreateProject(appLogo, appName.value, appDescription.value, appTools, deploymentLink.value, repoLink.value, projectVersion.value)
     }
   }
 
