@@ -4,7 +4,8 @@ function AddProjectForm(props) {
 
     const [LinkButton, setLinkButton] = useState(false)
 
-    const handleLinkButton = () => {
+    const handleLinkButton = (e) => {
+        e.preventDefault()
         if (LinkButton) {
             setLinkButton(false)
         } else {
@@ -30,26 +31,21 @@ function AddProjectForm(props) {
             <input name='repoLink' type='text' placeholder='github.com/john/doeProject'></input>
             
 
-            {/* {
-            
-                if (LinkButton){
-                return (
-                <div>
-                <h3>Upload your logo</h3>
-                <input type="file" className="form-control" name="appLogo" id="image" />
-                </div>
-                )
-                } else {
-                return (
-                <div>
-                <h3>Paste it here!</h3>
-                <input name='appLogo' type='text'></input>
-                </div>
-                )
-                }
-            } */}
             {
-                LinkButton ? <button onClick={handleLinkButton}>Or actually I want to upload</button> : <button onClick={handleLinkButton}>I have a link!</button>
+                LinkButton 
+                ?
+                <div>
+                    <h3>Upload your logo</h3>
+                    <input type="file" className="form-control" name="uploadedAppLogo" id="image" />
+                </div>
+                :
+                <div>
+                    <h3>Paste it here!</h3>
+                    <input name='appLogoLink' type='text'></input>
+                </div>
+            }
+            {
+                LinkButton ? <button onClick={handleLinkButton}>I have a link!</button> :  <button onClick={handleLinkButton}>Or actually I want to upload</button>
             }
             
 

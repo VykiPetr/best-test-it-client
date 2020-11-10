@@ -43,24 +43,21 @@ export default function EditProjectForm(props) {
             <input name='repoLink' type='text' value={Project.repoLink}></input>
             
 
-            {/* {
+            {
                
-                if (LinkButton){
-                return (
+                LinkButton ?
                 <div>
                 <h3>Upload your logo</h3>
                 <input type="file" className="form-control" name="appLogo" id="image" value={Project.appLogo}/>
                 </div>
-                )
-                } else {
-                return (
+                :
                 <div>
                 <h3>Paste it here!</h3>
                 <input name='appLogo' type='text' value={Project.appLogo}></input>
                 </div>
-                )
-                }
-            } */}
+                
+                
+            }
             {
                 LinkButton ? <button onClick={handleLinkButton}>Or actually I want to upload</button> : <button onClick={handleLinkButton}>I have a link!</button>
             }
