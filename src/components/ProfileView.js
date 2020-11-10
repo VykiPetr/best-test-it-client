@@ -80,6 +80,7 @@ function ProfileView(props) {
                 LoggedInUser ? <Link to='/add-project'>Add a project </Link> : null 
             }
         </div>
+        
     )
 }
 
