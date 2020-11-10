@@ -10,6 +10,8 @@ import axios from 'axios'
 import ProfileView from './components/ProfileView'
 import AddProjectForm from './components/AddProjectForm'
 import EditProjectForm from './components/EditProjectForm'
+import EditProfile from './components/EditProfile'
+import ProfileProject from './components/ProjectView'
 import ViewAllProjects from './components/ViewAllProjects';
 // import AProject from './components/AProject'
 
@@ -95,6 +97,7 @@ function App() {
     const {appName, appDescription, appToolsData, deploymentLink, repoLink, uploadedAppLogo, appLogoLink, projectVersion} = e.target
     let appLogo = ''
     let appTools = []
+    //handling the app tools array forming
     if (appToolsData.length > 1) {
       for (let i = 0; i < appToolsData.length; i++) {
         appTools.push(appToolsData[i].value)
@@ -103,6 +106,7 @@ function App() {
       appTools.push(appToolsData.value)
     }
     console.log(appTools)
+    //handling the image upload/linking
     if (uploadedAppLogo) {
       let imageFile = uploadedAppLogo.files[0]
       console.log(uploadedAppLogo.files[0])
@@ -141,16 +145,56 @@ function App() {
       })
   }
 
+  const editProfile = (userImage, aboutMe, mySkills) => {
+    let editingProfile = {
+      userImage: userImage,
+      aboutMe: aboutMe,
+      mySkills: mySkills,
+    }
+    axios.post(`http://localhost:5000/api/profile/${loggedInUser._id}`, editingProfile, {withCredentials: true})
+      .then(() => {
+        history.push(`/profile/${loggedInUser._id}`)
+      })
+  }
+
+  const handleProfileEdit = (e) => {
+    e.preventDefault()
+    const {aboutMe, mySkills, userImageLink, uploadedUserImage} = e.target
+    let userImage = ''
+    if (uploadedUserImage) {
+      let imageFile = uploadedUserImage.files[0]
+      let uploadForm = new FormData()
+      uploadForm.append('logoUrl', imageFile)
+      axios.post(`http://localhost:5000/api/logo-upload`, uploadForm, {withCredentials: true})
+        .then((response)=>{
+          userImage = response.data.appLogo
+          editProfile(userImage, aboutMe.value, mySkills.value)
+        })
+    } else if (userImageLink.value.length == 0) {
+      userImage = 'https://www.severnedgevets.co.uk/sites/default/files/styles/medium/public/guides/kitten.png?itok=Wpg9ghjs'
+      editProfile(userImage, aboutMe.value, mySkills.value)
+    } else if (userImageLink) {
+      userImage = userImageLink.value
+      editProfile(userImage, aboutMe.value, mySkills.value)
+    }
+  }
+
   return (
     <div >
       <OurNavbar loggedIn={loggedInUser} onLogout={handleLogout}/>
       {/* <AProject /> */}
       <Switch>
-        <Route path={`/edit-project/:projectId`} render={()=>{
-          return <EditProjectForm onProjectEdit={handleProjectEdit} loggedIn={loggedInUser}/>
+        <Route path={`/edit-profile/:profileId`} render={(routeProps)=>{
+          return <EditProfile onProfileEdit={handleProfileEdit} loggedIn={loggedInUser} {...routeProps}/>
+        }}/>
+        <Route path={`/edit-project/:projectId`} render={(routeProps)=>{
+          return <EditProjectForm onProjectEdit={handleProjectEdit} loggedIn={loggedInUser} {...routeProps}/>
         }}/>
         <Route path={`/add-project`} render={()=>{
           return <AddProjectForm onProjectAdd={handleProjectAdd} loggedIn={loggedInUser}/>
+        }}/>
+        <Route path={`/project/:projectId`} render={(routeProps)=>{
+          return <ProfileProject loggedIn={loggedInUser} {...routeProps} />
         }}/>
         <Route path={`/profile/:profileId`} render={(routeProps)=>{
           return <ProfileView loggedIn={loggedInUser} {...routeProps} />

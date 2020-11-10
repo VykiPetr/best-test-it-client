@@ -21,6 +21,8 @@ function ProfileView(props) {
                         console.log('we got these projects', response3)
                         if (response2.data._id === response._id){
                             setLoggedInUser(true)
+                        } else {
+                            setLoggedInUser(null)
                         }
                     })
             })
@@ -51,12 +53,12 @@ function ProfileView(props) {
         <div>
             
             <div>
-                <img src={profile.userImage} style={{width: "50px", height: "50px"}} alt='profile avatar'/>
+                <img  src={profile.userImage} style={{width: "50px", height: "50px"}} alt='profile avatar'/>
                 <div>
                     <h2>{profile.username}</h2>
                     {/* <button>Send Message</button> */}
                     {
-                    props.loggedIn ? <Link to={`/edit-profile/${props.loggedIn._id}`}>Edit profile</Link> : null
+                        LoggedInUser ? <Link to={`/edit-profile/${props.loggedIn._id}`}>Edit profile</Link> : null
                     }
                 </div>
             </div>
@@ -78,6 +80,7 @@ function ProfileView(props) {
                 LoggedInUser ? <Link to='/add-project'>Add a project </Link> : null 
             }
         </div>
+        
     )
 }
 
