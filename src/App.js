@@ -10,7 +10,7 @@ import ProfileView from './components/ProfileView'
 import AddProjectForm from './components/AddProjectForm'
 import EditProjectForm from './components/EditProjectForm'
 import EditProfile from './components/EditProfile'
-// import AProject from './components/AProject'
+import ProfileProject from './components/ProjectView'
 
 function App() {
 
@@ -184,11 +184,14 @@ function App() {
         <Route path={`/edit-profile/:profileId`} render={(routeProps)=>{
           return <EditProfile onProfileEdit={handleProfileEdit} loggedIn={loggedInUser} {...routeProps}/>
         }}/>
-        <Route path={`/edit-project/:projectId`} render={()=>{
-          return <EditProjectForm onProjectEdit={handleProjectEdit} loggedIn={loggedInUser}/>
+        <Route path={`/edit-project/:projectId`} render={(routeProps)=>{
+          return <EditProjectForm onProjectEdit={handleProjectEdit} loggedIn={loggedInUser} {...routeProps}/>
         }}/>
         <Route path={`/add-project`} render={()=>{
           return <AddProjectForm onProjectAdd={handleProjectAdd} loggedIn={loggedInUser}/>
+        }}/>
+        <Route path={`/project/:projectId`} render={(routeProps)=>{
+          return <ProfileProject loggedIn={loggedInUser} {...routeProps} />
         }}/>
         <Route path={`/profile/:profileId`} render={(routeProps)=>{
           return <ProfileView loggedIn={loggedInUser} {...routeProps} />
