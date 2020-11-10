@@ -29,6 +29,10 @@ function ProjectView(props) {
     const onLikeClick = (e) => {
         e.preventDefault()
         console.log('like button clicked')
+        let data = {
+            
+        }
+        axios.post(`http://localhost:5000/api/projectLike`, data)
     }
 
     const onDeleteClick = (e) => {
