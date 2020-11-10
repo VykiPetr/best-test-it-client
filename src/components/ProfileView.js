@@ -51,7 +51,7 @@ function ProfileView(props) {
         <div>
             
             <div>
-                <img src={profile.userImage} alt='profile avatar'/>
+                <img src={profile.userImage} style={{width: "50px", height: "50px"}} alt='profile avatar'/>
                 <div>
                     <h2>{profile.username}</h2>
                     {/* <button>Send Message</button> */}

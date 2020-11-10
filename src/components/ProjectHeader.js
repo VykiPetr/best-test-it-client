@@ -14,7 +14,7 @@ function ProjectHeader(props) {
         <div>
             <Link to={`/project/${_id}`}>
                 <div>
-                    <img src={appLogo}/>
+                    <img style={{width:"50px", height:"50px"}} src={appLogo}/>
                 </div>
                 <div>
                     <h3>{appName}</h3>
