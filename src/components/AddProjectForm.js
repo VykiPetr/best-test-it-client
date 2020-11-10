@@ -4,7 +4,8 @@ function AddProjectForm(props) {
 
     const [LinkButton, setLinkButton] = useState(false)
 
-    const handleLinkButton = () => {
+    const handleLinkButton = (e) => {
+        e.preventDefault()
         if (LinkButton) {
             setLinkButton(false)
         } else {

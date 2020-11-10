@@ -72,51 +72,57 @@ function App() {
       })
   }
 
+  const handleCreateProject = (imageSource, appName, appDescription, appTools, deploymentLink, repoLink, projectVersion) => {
+    let projectCreationData = {
+      appName: appName,
+      appDescription: appDescription,
+      appTools: appTools,
+      deploymentLink: deploymentLink,
+      repoLink: repoLink,
+      appLogo: imageSource,
+      projectVersion: projectVersion
+    }
+    axios.post('http://localhost:5000/api/project/create', projectCreationData, {withCredentials: true})
+      .then(()=>{
+      history.push(`/profile/${loggedInUser._id}`)
+    })
+  }
+
   const handleProjectAdd = (e) => {
     e.preventDefault()
     const {appName, appDescription, appTools, deploymentLink, repoLink, uploadedAppLogo, appLogoLink, projectVersion} = e.target
     let appLogo = ''
-
+  
     if (uploadedAppLogo) {
       let imageFile = uploadedAppLogo.files[0]
       console.log(uploadedAppLogo.files[0])
       let uploadForm = new FormData()
       uploadForm.append('logoUrl', imageFile)
       console.log(uploadForm)
+
       axios.post(`http://localhost:5000/api/logo-upload`, uploadForm, {withCredentials: true})
-        .then(()=>{
-
+        .then((response)=>{
+          handleCreateProject(response.data.image, appName.value, appDescription.value, appTools.value, deploymentLink.value, repoLink.value, projectVersion.value)
         })
-
-      appLogo = 'https://www.severnedgevets.co.uk/sites/default/files/styles/medium/public/guides/kitten.png?itok=Wpg9ghjs'
-    } else {
+    } else if (appLogoLink) {
       appLogo = appLogo.value
+      handleCreateProject(appLogo, appName.value, appDescription.value, appTools.value, deploymentLink.value, repoLink.value, projectVersion.value)
+    } else {
+      appLogo = 'https://www.severnedgevets.co.uk/sites/default/files/styles/medium/public/guides/kitten.png?itok=Wpg9ghjs'
+      handleCreateProject(appLogo, appName.value, appDescription.value, appTools.value, deploymentLink.value, repoLink.value, projectVersion.value)
     }
-    let projectCreationData = {
-      appName: appName.value,
-      appDescription: appDescription.value,
-      appTools: appTools.value,
-      deploymentLink: deploymentLink.value,
-      repoLink: repoLink.value,
-      appLogo: appLogo,
-      projectVersion: projectVersion.value
-    }
-    axios.post('http://localhost:5000/api/project/create', projectCreationData, {withCredentials: true})
-      .then(()=>{
-        history.push(`/profile/${loggedInUser._id}`)
-      })
   }
 
   const handleProjectEdit = (e) => {
     e.preventDefault()
-    const {appName, appDescription, appTools, deploymentLink, repoLink, appLogo, projectVersion} = e.target
+    const {appName, appDescription, appTools, deploymentLink, repoLink, uploadedAppLogo, appLogoLink, projectVersion} = e.target
     let projectEditData = {
       appName: appName.value,
       appDescription: appDescription.value,
       appTools: appTools.value,
       deploymentLink: deploymentLink.value,
       repoLink: repoLink.value,
-      appLogo: appLogo.value,
+      appLogo: uploadedAppLogo.value,
       projectVersion: projectVersion.value
     }
 
