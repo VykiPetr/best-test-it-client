@@ -9,9 +9,9 @@ function ProjectHeader(props) {
 
   return (
     <div>
-      <Card.Group>
+      <Card.Group className="card-container" >
         <Card style={{ backgroundColor: "#FFE3B3" }}>
-          <Card.Content>
+          <Card.Content >
             <Image floated="left" size="mini" src={appLogo} />
 
             <Card.Header>
