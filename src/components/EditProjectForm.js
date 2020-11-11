@@ -41,10 +41,23 @@ export default function EditProjectForm(props) {
     stateFn(e.target.value);
   };
 
-  return (
-    <form onSubmit={props.onProjectEdit}>
-      <h3>Change the app name here!</h3>
-      <input name="appName" type="text" onChange={ (e) => { handleInputChange(e, setAppName) } } value={Project.appName}></input>
+    return (
+        <form onSubmit={(e) => {props.onProjectEdit(e , Project._id)} }>
+            <h3>Change the name here!</h3>
+            <input name='appName' type='text' value={Project.appName}></input>
+            
+            <h3>The description</h3>
+            <input name='appDescription' type='text' value={Project.appDescription}></input>
+            
+            <h3>What are you using to create/develop this</h3>
+            <input name='appTools' type='text' value={Project.appTools}></input>
+            
+            <h3>Deployment link</h3>
+            <input name='deploymentLink' type='text' value={Project.deploymentLink}></input>
+            
+            <h3>Repository link</h3>
+            <input name='repoLink' type='text' value={Project.repoLink}></input>
+            
 
       <h3>The description</h3>
       <input name="appDescription" onChange={ (e) => { handleInputChange(e, setAppDescription) } } type="text" value={Project.appDescription}></input>
