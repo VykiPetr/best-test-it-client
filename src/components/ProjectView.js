@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import {API_URL} from '../config'
 
 function ProjectView(props) {
 
@@ -10,9 +11,9 @@ function ProjectView(props) {
     const [Likes, setLikes] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/project/${props.match.params.projectId}`)
+        axios.get(`${API_URL}/project/${props.match.params.projectId}`)
             .then((response) => {
-                axios.get(`http://localhost:5000/api/user`, {withCredentials: true})
+                axios.get(`${API_URL}/user`, {withCredentials: true})
                     .then((response2)=>{
                         setLoggedInUser(response2.data)
                         setProjectData(response.data)
@@ -35,7 +36,7 @@ function ProjectView(props) {
             userId: LoggedInUser,
             projectId: ProjectData._id,
         }
-        axios.post(`http://localhost:5000/api/projectLike`, data, {withCredentials: true})
+        axios.post(`${API_URL}/projectLike`, data, {withCredentials: true})
             .then((response)=>{
                 console.log(response)
                 setLikes(response.data.likes)
@@ -80,7 +81,10 @@ function ProjectView(props) {
             </div>
             </div>
             <div>
-                <iframe src={ProjectData.deploymentLink} title="Iframe Example"></iframe>
+                <div>
+                    <iframe src={ProjectData.deploymentLink} title="Iframe Example"></iframe>
+                </div>
+                
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import {API_URL} from '../config'
 
 export default function EditProjectForm(props) {
 
@@ -16,7 +17,7 @@ export default function EditProjectForm(props) {
 
         //component mount
         useEffect(() => {
-            axios.get(`http://localhost:5000/api/project/${props.match.params.projectId}`)
+            axios.get(`${API_URL}/project/${props.match.params.projectId}`)
                 .then((response)=>{
                     setProject(response.data)
                 })

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import ProjectHeader from './ProjectHeader'
+import {API_URL} from '../config'
 
 function ProfileView(props) {
 
@@ -11,11 +12,11 @@ function ProfileView(props) {
     
     const getProfileInfo = (response) => {
 
-        axios.get(`http://localhost:5000/api/profile/${props.match.params.profileId}`, {withCredentials: true})
+        axios.get(`${API_URL}/profile/${props.match.params.profileId}`, {withCredentials: true})
             .then((response2)=>{
                 setProfile(response2.data)
                 console.log('profile view loaded this', profile)
-                axios.get(`http://localhost:5000/api/userProjects/${props.match.params.profileId}`, {withCredentials: true})
+                axios.get(`${API_URL}/userProjects/${props.match.params.profileId}`, {withCredentials: true})
                     .then((response3) => {
                         setUserProjects(response3.data)
                         console.log('we got these projects', response3)
@@ -32,7 +33,7 @@ function ProfileView(props) {
     //component did mount does work/
     useEffect(() => {
         if (!props.loggedIn) {
-            axios.get(`http://localhost:5000/api/user`, {withCredentials: true})
+            axios.get(`${API_URL}/user`, {withCredentials: true})
               .then((response)=>{
                 console.log('not else')
                 setLoggedInUser(response.data)
