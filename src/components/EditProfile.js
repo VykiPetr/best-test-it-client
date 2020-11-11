@@ -17,7 +17,9 @@ function EditProfile(props) {
             setProfile(response.data)
             setAboutMe(response.data.aboutMe)
             setMySkills(response.data.mySkills)
+            console.log(response.data.userImage)
             setProfileImage(response.data.userImage)
+            
         })  
         return () => {
         }
@@ -38,7 +40,7 @@ function EditProfile(props) {
 
 
     return (
-        <form onSubmit={props.onProfileEdit}>
+        <form onSubmit={ (e) => {props.onProfileEdit(e, ProfileImage)} }>
             
             <h3>Anything you would like to tell about yourself?</h3>
             <input name='aboutMe' type='text' onChange={ (e) => { handleInputChange(e, setAboutMe) } } value={AboutMe}></input>
@@ -60,7 +62,7 @@ function EditProfile(props) {
                         :
                         <div>
                             <h3>Upload your profile picture</h3>
-                            <input type="file" className="form-control" name="uploadedUserImage" id="image" />
+                            <input type="file" className="form-control" name="uploadedUserImage" id="image"/>
                         </div>
                     }
                     {

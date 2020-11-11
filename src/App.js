@@ -27,7 +27,6 @@ function App() {
       axios.get(`${API_URL}/user`, {withCredentials: true})
         .then((response)=>{
           setLoggedInUser(response.data)
-          console.log('logged in user is', response.data)
         })
     }
     return () => {
@@ -127,8 +126,9 @@ function App() {
     }
   }
 
-  const handleProjectEdit = (e) => {
+  const handleProjectEdit = (e, projectId) => {
     e.preventDefault()
+    console.log(projectId)
     const {appName, appDescription, appTools, deploymentLink, repoLink, uploadedAppLogo, appLogoLink, projectVersion} = e.target
     let projectEditData = {
       appName: appName.value,
@@ -158,11 +158,12 @@ function App() {
       })
   }
 
-  const handleProfileEdit = (e) => {
+  const handleProfileEdit = (e, ProfileImage) => {
     e.preventDefault()
+    console.log(ProfileImage)
     const {aboutMe, mySkills, userImageLink, uploadedUserImage} = e.target
     let userImage = ''
-    if (uploadedUserImage) {
+    if (uploadedUserImage && uploadedUserImage.files.length) {
       let imageFile = uploadedUserImage.files[0]
       let uploadForm = new FormData()
       uploadForm.append('logoUrl', imageFile)
@@ -171,8 +172,8 @@ function App() {
           userImage = response.data.appLogo
           editProfile(userImage, aboutMe.value, mySkills.value)
         })
-    } else if (userImageLink.value.length == 0) {
-      userImage = 'https://www.severnedgevets.co.uk/sites/default/files/styles/medium/public/guides/kitten.png?itok=Wpg9ghjs'
+    } else if (!userImageLink) {
+      userImage = ProfileImage
       editProfile(userImage, aboutMe.value, mySkills.value)
     } else if (userImageLink) {
       userImage = userImageLink.value

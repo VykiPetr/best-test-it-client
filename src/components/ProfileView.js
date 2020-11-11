@@ -49,7 +49,9 @@ function ProfileView(props) {
         }
     }, [])
 
-
+    if (!props.loggedIn) {
+        return null
+    }
     return (
         <div>
             
