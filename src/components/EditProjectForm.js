@@ -20,9 +20,9 @@ export default function EditProjectForm(props) {
         setProject(response.data);
         setAppName(response.data.appName)
         setAppDescription(response.data.appDescription);
-        setAppTools(reponse.data.appTools);
+        setAppTools(response.data.appTools);
         setDeploymentLink(response.data.deploymentLink);
-        setRepoLink(reponse.data.repoLink);
+        setRepoLink(response.data.repoLink);
         setProjectVersion(response.data.projectVersion);
       });
 

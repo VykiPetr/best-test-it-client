@@ -27,5 +27,9 @@ nav Link {
     flex-direction: column !important;
     padding: 25px !important;
   }
+  
 }
 
+.card-container{
+  background-color: red;
+}

@@ -8,8 +8,10 @@ function ProjectHeader(props) {
   const handleProjectClick = () => {};
 
   return (
-    <div>
-      <Card.Group className="card-container" >
+    
+      <div>
+    
+      <Card.Group >
         <Card style={{ backgroundColor: "#FFE3B3" }}>
           <Card.Content >
             <Image floated="left" size="mini" src={appLogo} />
@@ -27,7 +29,8 @@ function ProjectHeader(props) {
           </Card.Content>
         </Card>
       </Card.Group>
-    </div>
+      </div>
+    
   );
 }
 
