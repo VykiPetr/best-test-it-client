@@ -22,7 +22,7 @@ function AllComments(props) {
                 setProjectVersion(response1.data.projectVersion)
                 axios.get(`${API_URL}/comments/${props.match.params.projectId}`, {withCredentials: true})
                     .then((response2)=>{
-                        console.log(response2)
+                        console.log(response2.data)
                         setComments(response2.data.comments)
                     })
             })
@@ -33,8 +33,6 @@ function AllComments(props) {
     const handleCommentCreation = (e) =>{
         e.preventDefault()
         const {commentBody, flag} = e.target
-        console.log(commentBody.value)
-        console.log(flag.value)
         let commentStructure = {
             commentBody: commentBody.value,
             flag: flag.value,
