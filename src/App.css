@@ -1,14 +1,14 @@
-body {
-  background-color: #0ab68b;
+body{
+  background-color: #0ab68b !important;
 }
 
 nav {
   background-color: #028174;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border: 0 solid black;
-  border-width: 0 0 2px 0;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  border: 0 solid black !important;
+  border-width: 0 0 2px 0 !important;
 }
 
 nav Link {
@@ -20,11 +20,11 @@ nav Link {
   nav {
     height: 45px;
   }
-  .landing-page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 25px;
+.landing-page {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    padding: 25px !important;
   }
 }
