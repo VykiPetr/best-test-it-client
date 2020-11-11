@@ -27,7 +27,7 @@ export default function EditProjectForm(props) {
         }, [])   
 
     return (
-        <form onSubmit={props.onProjectEdit}>
+        <form onSubmit={(e) => {props.onProjectEdit(e , Project._id)} }>
             <h3>Change the name here!</h3>
             <input name='appName' type='text' value={Project.appName}></input>
             

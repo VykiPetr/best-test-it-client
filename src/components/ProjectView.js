@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import {API_URL} from '../config'
+import AllComments from './AllComments'
 
 function ProjectView(props) {
 
@@ -19,7 +20,6 @@ function ProjectView(props) {
                         setProjectData(response.data)
                         setLoggedInUser(props.loggedIn)
                         setLikes(response.data.likes)
-                        console.log(response2.data.likes)
                         if (response2.data._id === response.data.userRefId){
                             setProjectOwner(true)
                         } else {
@@ -47,7 +47,7 @@ function ProjectView(props) {
         e.preventDefault()
         console.log('delete button clicked')
     }
-
+    
     return (
         <div>
             <div>
@@ -84,7 +84,9 @@ function ProjectView(props) {
                 <div>
                     <iframe src={ProjectData.deploymentLink} title="Iframe Example"></iframe>
                 </div>
-                
+                <div>
+                    <AllComments project={ProjectData}/>
+                </div>
             </div>
         </div>
     )
