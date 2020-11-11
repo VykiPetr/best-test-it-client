@@ -14,6 +14,7 @@ import EditProfile from './components/EditProfile'
 import ProfileProject from './components/ProjectView'
 import ViewAllProjects from './components/ViewAllProjects';
 // import AProject from './components/AProject'
+import {API_URL} from './config'
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
   useEffect(() => {
    
     if (!loggedInUser) {
-      axios.get(`http://localhost:5000/api/user`, {withCredentials: true})
+      axios.get(`${API_URL}/user`, {withCredentials: true})
         .then((response)=>{
           setLoggedInUser(response.data)
           console.log('logged in user is', response.data)
@@ -41,7 +42,7 @@ function App() {
       email: email.value,
       password: password.value
     }
-    axios.post(`http://localhost:5000/api/signin`, signingIn, {withCredentials: true})
+    axios.post(`${API_URL}/signin`, signingIn, {withCredentials: true})
       .then((response)=>{
         setLoggedInUser(response.data)
         console.log('logged in', loggedInUser)
@@ -58,7 +59,7 @@ function App() {
       email: email.value,
       password: password.value,
     }
-    axios.post(`http://localhost:5000/api/signup`, signingUp, {withCredentials: true})
+    axios.post(`${API_URL}/signup`, signingUp, {withCredentials: true})
       .then((response)=>{
         console.log('signing up', response.data)
         setLoggedInUser(response.data)
@@ -68,7 +69,7 @@ function App() {
 
   const handleLogout = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:5000/api/logout', {} ,{withCredentials: true})
+    axios.post(`${API_URL}/logout`, {} ,{withCredentials: true})
       .then(()=>{
         setLoggedInUser(null)
         console.log('loggin out',loggedInUser)
@@ -86,7 +87,7 @@ function App() {
       appLogo: appLogo,
       projectVersion: projectVersion
     }
-    axios.post('http://localhost:5000/api/project/create', projectCreationData, {withCredentials: true})
+    axios.post(`${API_URL}/project/create`, projectCreationData, {withCredentials: true})
       .then(()=>{
       history.push(`/profile/${loggedInUser._id}`)
     })
@@ -112,7 +113,7 @@ function App() {
       console.log(uploadedAppLogo.files[0])
       let uploadForm = new FormData()
       uploadForm.append('logoUrl', imageFile)
-      axios.post(`http://localhost:5000/api/logo-upload`, uploadForm, {withCredentials: true})
+      axios.post(`${API_URL}/logo-upload`, uploadForm, {withCredentials: true})
         .then((response)=>{
           appLogo = response.data.appLogo
           handleCreateProject(appLogo, appName.value, appDescription.value, appTools, deploymentLink.value, repoLink.value, projectVersion.value)
@@ -139,7 +140,7 @@ function App() {
       projectVersion: projectVersion.value
     }
 
-    axios.post(`http://localhost:5000/api/project//edit`, projectEditData, {withCredentials: true})
+    axios.post(`${API_URL}/project//edit`, projectEditData, {withCredentials: true})
       .then(()=>{
         history.push(`/profile/${loggedInUser._id}`)
       })
@@ -151,7 +152,7 @@ function App() {
       aboutMe: aboutMe,
       mySkills: mySkills,
     }
-    axios.post(`http://localhost:5000/api/profile/${loggedInUser._id}`, editingProfile, {withCredentials: true})
+    axios.post(`${API_URL}/profile/${loggedInUser._id}`, editingProfile, {withCredentials: true})
       .then(() => {
         history.push(`/profile/${loggedInUser._id}`)
       })
@@ -165,7 +166,7 @@ function App() {
       let imageFile = uploadedUserImage.files[0]
       let uploadForm = new FormData()
       uploadForm.append('logoUrl', imageFile)
-      axios.post(`http://localhost:5000/api/logo-upload`, uploadForm, {withCredentials: true})
+      axios.post(`${API_URL}/logo-upload`, uploadForm, {withCredentials: true})
         .then((response)=>{
           userImage = response.data.appLogo
           editProfile(userImage, aboutMe.value, mySkills.value)

@@ -1,17 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import {API_URL} from '../config'
 
 function EditProfile(props) {
 
     const [profile, setProfile] = useState({})
-    const [userProjects, setUserProjects] = useState([])
     const [LoggedInUser, setLoggedInUser] = useState(null)
     const [LinkButton, setLinkButton] = useState(false)
+    const [AboutMe, setAboutMe] = useState('')
+    const [MySkills, setMySkills] = useState('')
+    const [ProfileImage, setProfileImage] = useState('')
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/profile/${props.match.params.profileId}`, {withCredentials: true})
+        axios.get(`${API_URL}/profile/${props.match.params.profileId}`, {withCredentials: true})
         .then((response)=> {
             setProfile(response.data)
+            setAboutMe(response.data.aboutMe)
+            setMySkills(response.data.mySkills)
+            setProfileImage(response.data.userImage)
         })  
         return () => {
         }
@@ -26,33 +32,42 @@ function EditProfile(props) {
         }
     }
 
+    const handleInputChange = (e, stateFn) => {
+        stateFn(e.target.value)
+    }
+
 
     return (
         <form onSubmit={props.onProfileEdit}>
             
             <h3>Anything you would like to tell about yourself?</h3>
-            <input name='aboutMe' type='text' value={profile.aboutMe}></input>
+            <input name='aboutMe' type='text' onChange={ (e) => { handleInputChange(e, setAboutMe) } } value={AboutMe}></input>
             
             <h3>What are your skills?</h3>
-            <input name='mySkills' type='text' value={profile.mySkills}></input>
-
-            {
-                LinkButton 
-                ?
+            <input name='mySkills' type='text' onChange={ (e) => { handleInputChange(e, setMySkills) } } value={MySkills}></input>
+            <div>
                 <div>
-                    <h3>Paste it here!</h3>
-                    <input name='userImageLink' type='text'></input>
+                    <img src={ProfileImage} style={{width: "50px", height: "50px"}}/>
                 </div>
-                :
                 <div>
-                    <h3>Upload your logo</h3>
-                    <input type="file" className="form-control" name="uploadedUserImage" id="image" />
+                    {
+                        LinkButton 
+                        ?
+                        <div>
+                            <h3>Paste it here!</h3>
+                            <input onChange={ (e) => { handleInputChange(e, setProfileImage) } } value={ProfileImage} name='userImageLink' type='text'></input>
+                        </div>
+                        :
+                        <div>
+                            <h3>Upload your profile picture</h3>
+                            <input type="file" className="form-control" name="uploadedUserImage" id="image" />
+                        </div>
+                    }
+                    {
+                        LinkButton ?  <button onClick={handleLinkButton}>Or actually I want to upload</button> :  <button onClick={handleLinkButton}>I have a link!</button>
+                    }
                 </div>
-            }
-            {
-                LinkButton ?  <button onClick={handleLinkButton}>Or actually I want to upload</button> :  <button onClick={handleLinkButton}>I have a link!</button>
-            }
-            
+            </div>
             <button type='submit'>Edit your profile!</button>
         </form>
     )
