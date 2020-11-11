@@ -4,7 +4,7 @@ import axios from 'axios'
 import {API_URL} from '../config'
 import { Button, Form} from 'semantic-ui-react'
 import Select from 'react-select';
-import Comment from './Comment'
+import CreateComment from './CreateComment'
 
 let flagList = [
     { value: 'bug', label: 'Bug' },
@@ -51,6 +51,7 @@ function AllComments(props) {
 
     return (
         <div>
+        
             <Form reply onSubmit={handleCommentCreation}>
                 <Form.TextArea name="commentBody" />
                 <Button  content='Add Reply' labelPosition='left' icon='edit' primary />
@@ -64,7 +65,7 @@ function AllComments(props) {
             </Form>
             {
                 Comments.map((commentData, i) => {
-                    return <Comment data={commentData} key={i}/>
+                    return <div><CreateComment data={commentData} key={i}/></div>
                 })
             }
         </div>
