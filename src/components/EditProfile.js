@@ -4,14 +4,17 @@ import axios from 'axios'
 function EditProfile(props) {
 
     const [profile, setProfile] = useState({})
-    const [userProjects, setUserProjects] = useState([])
     const [LoggedInUser, setLoggedInUser] = useState(null)
     const [LinkButton, setLinkButton] = useState(false)
+    const [AboutMe, setAboutMe] = useState('')
+    const [MySkills, setMySkills] = useState('')
 
     useEffect(() => {
         axios.get(`http://localhost:5000/api/profile/${props.match.params.profileId}`, {withCredentials: true})
         .then((response)=> {
             setProfile(response.data)
+            setAboutMe(response.data.aboutMe)
+            setMySkills(response.data.mySkills)
         })  
         return () => {
         }
@@ -26,15 +29,19 @@ function EditProfile(props) {
         }
     }
 
+    const handleInputChange = (e, stateFn) => {
+        stateFn(e.target.value)
+    }
+
 
     return (
         <form onSubmit={props.onProfileEdit}>
             
             <h3>Anything you would like to tell about yourself?</h3>
-            <input name='aboutMe' type='text' value={profile.aboutMe}></input>
+            <input name='aboutMe' type='text' onChange={ (e) => { handleInputChange(e, setAboutMe) } } value={AboutMe}></input>
             
             <h3>What are your skills?</h3>
-            <input name='mySkills' type='text' value={profile.mySkills}></input>
+            <input name='mySkills' type='text' onChange={ (e) => { handleInputChange(e, setMySkills) } } value={MySkills}></input>
 
             {
                 LinkButton 

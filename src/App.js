@@ -161,7 +161,8 @@ function App() {
     e.preventDefault()
     const {aboutMe, mySkills, userImageLink, uploadedUserImage} = e.target
     let userImage = ''
-    if (uploadedUserImage) {
+    console.log(uploadedUserImage.files[0])
+    if (uploadedUserImage.files[0]) {
       let imageFile = uploadedUserImage.files[0]
       let uploadForm = new FormData()
       uploadForm.append('logoUrl', imageFile)
