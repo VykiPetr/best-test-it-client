@@ -3,7 +3,7 @@ import React from 'react'
 function Comment(props) {
     return (
         <div>
-            comment here
+            {props.data.commentBody}
         </div>
     )
 }
