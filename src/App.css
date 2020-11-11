@@ -19,6 +19,7 @@ nav Link {
 @media (max-width: 380px) {
   nav {
     height: 45px;
+    
   }
 .landing-page {
     display: flex !important;
@@ -27,9 +28,10 @@ nav Link {
     flex-direction: column !important;
     padding: 25px !important;
   }
-  
+
 }
 
-.card-container{
-  background-color: red;
-}
+
+.card-style{
+  background-color: #FFE3B3 !important;
+ }
