@@ -6,7 +6,7 @@ function CreateComment(props) {
   return (
     
     <div>
-      <Comment.Group >
+      <Comment.Group>
         <Comment className="comment-container">
           <Image
             size="mini"

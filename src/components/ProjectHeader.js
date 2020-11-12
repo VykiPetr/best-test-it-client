@@ -15,7 +15,7 @@ function ProjectHeader(props) {
   const handleProjectClick = () => {};
 
   return (
-    <div >
+    <div>
       <Card.Group>
         <Card className="card-style" raised="true">
           <Card.Content>
