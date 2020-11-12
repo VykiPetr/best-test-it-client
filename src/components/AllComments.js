@@ -72,6 +72,7 @@ function AllComments(props) {
           name="flag"
           options={flagList}
           labelPosition="right"
+          placeholder="What category is your comment?"
         />
 
         <Form.TextArea name="commentBody" placeholder="Enter your comment here"/>
