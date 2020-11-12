@@ -16,10 +16,12 @@ function ViewAllProjects() {
     getAllProjects();
   }, []);
   return (
-    <div>
-      {allProjects.map((project, i) => {
-        return <ProjectHeader project={project} key={i} />;
-      })}
+    <div className="all-projects-body">
+      <div className="all-projects-list">
+        {allProjects.map((project, i) => {
+          return <ProjectHeader className="project-header" project={project} key={i} />;
+        })}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,22 @@
+
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid;
+    width: 80vh;
+    border-radius: 5px;
+    border-color:  #FFE3B3;
+    padding: 35px;
+}
+
+.landing-page h2 {
+    text-align: center;
+}
+
+.landing-body {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -41,7 +41,7 @@ function AllComments(props) {
     const { commentBody, flag } = e.target;
     let commentStructure = {
       commentBody: commentBody.value,
-      flag: flag.value,
+      commentFlag: flag.value,
       creatorCheck: false,
       projectVersion: ProjectVersion,
     };

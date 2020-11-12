@@ -1,0 +1,36 @@
+nav {
+  background-color: #028174;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  border: 0 solid  #FFE3B3 !important;
+  border-width: 0 0 2px 0 !important;
+  width: 100vw;
+  height: 60px;
+  
+}
+
+.textStyle {
+  text-decoration: none;
+  color: white;
+  text-shadow: 1px 1px black;
+  border-style: solid;
+  border-radius: 5px;
+  width: 25vh;
+  background-color: #FFE3B3;
+  text-align: center;
+  font-size: larger;
+  margin: 5px;
+}
+
+.nav-div {
+  width: 50vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 380px) {
+  nav {
+    height: 45px;
+  }
+}
