@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Comment, Form, Image } from "semantic-ui-react";
 
+
 function CreateComment(props) {
   return (
     <div>

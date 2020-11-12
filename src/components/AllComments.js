@@ -6,6 +6,7 @@ import { Button, Form } from "semantic-ui-react";
 import Select from "react-select";
 import CreateComment from "./CreateComment";
 
+
 let flagList = [
   { value: "bug", label: "Bug" },
   { value: "goodFeature", label: "Good Feature" },
