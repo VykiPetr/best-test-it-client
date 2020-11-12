@@ -5,7 +5,7 @@ import { API_URL } from "../config";
 import { Button, Form } from "semantic-ui-react";
 import Select from "react-select";
 import CreateComment from "./CreateComment";
-
+import './styles/AllComments.css'
 
 let flagList = [
   { value: "bug", label: "Bug" },

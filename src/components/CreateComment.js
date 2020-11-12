@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Comment, Form, Image } from "semantic-ui-react";
-
+import './styles/CreateComments.css'
 
 function CreateComment(props) {
   return (

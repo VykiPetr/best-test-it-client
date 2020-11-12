@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../config";
-import '../App.css'
+import './styles/EditProfile.css'
+
 function EditProfile(props) {
   const [profile, setProfile] = useState({});
   const [LoggedInUser, setLoggedInUser] = useState(null);
