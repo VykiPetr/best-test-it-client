@@ -5,12 +5,12 @@ import { API_URL } from "../config";
 import { Button, Form } from "semantic-ui-react";
 import Select from "react-select";
 import CreateComment from "./CreateComment";
-import './styles/AllComments.css'
+import "./styles/AllComments.css";
 
 let flagList = [
-  { value: "bug", label: "Bug" },
-  { value: "goodFeature", label: "Good Feature" },
-  { value: "badFeature", label: "badFeature" },
+  { value: "Bug", label: "Bug" },
+  { value: "Good feature", label: "Good feature" },
+  { value: "Bad feature", label: "Bad feature" },
 ];
 
 function AllComments(props) {
@@ -41,7 +41,7 @@ function AllComments(props) {
     const { commentBody, flag } = e.target;
     let commentStructure = {
       commentBody: commentBody.value,
-      flag: flag.value,
+      commentFlag: flag.value,
       creatorCheck: false,
       projectVersion: ProjectVersion,
     };
@@ -53,21 +53,19 @@ function AllComments(props) {
       )
       .then(() => {
         axios
-        .get(`${API_URL}/comments/${props.match.params.projectId}`, {
-          withCredentials: true,
-        })
-        .then((response2) => {
-          console.log(response2.data);
-          setComments(response2.data.comments);
-        });
+          .get(`${API_URL}/comments/${props.match.params.projectId}`, {
+            withCredentials: true,
+          })
+          .then((response2) => {
+            console.log(response2.data);
+            setComments(response2.data.comments);
+          });
       });
   };
 
   return (
     <div>
-      <Form reply onSubmit={handleCommentCreation}>
-        <Form.TextArea name="commentBody" />
-        <Button content="Add Reply" labelPosition="left" icon="edit" primary />
+      <Form className="comment-form" reply onSubmit={handleCommentCreation}>
         <Select
           className="basic-single"
           classNamePrefix="select"
@@ -75,7 +73,16 @@ function AllComments(props) {
           options={flagList}
           labelPosition="right"
         />
+
+        <Form.TextArea name="commentBody" placeholder="Enter your comment here"/>
+        <Button
+          content="Add Comment"
+          labelPosition="left"
+          icon="edit"
+          primary
+        />
       </Form>
+      
       {comments.map((commentData, i) => {
         return (
           <div>
@@ -83,7 +90,8 @@ function AllComments(props) {
           </div>
         );
       })}
-    </div>
+      </div>
+    
   );
 }
 
