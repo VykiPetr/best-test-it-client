@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProjectHeader from "./ProjectHeader";
 import { API_URL } from "../config";
+import './styles/ViewAllProjects.css'
 
 function ViewAllProjects() {
   const [allProjects, setAllProjects] = useState([]);

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../config";
 import AllComments from "./AllComments";
+import './styles/ProjectView.css'
 
 function ProjectView(props) {
   const [ProjectData, setProjectData] = useState({});

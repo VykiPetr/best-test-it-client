@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ProjectHeader from "./ProjectHeader";
 import { API_URL } from "../config";
+import './styles/ProfileView.css'
 
 function ProfileView(props) {
   const [profile, setProfile] = useState({});
