@@ -18,7 +18,7 @@ function ProjectHeader(props) {
   return (
     <div>
       <Card.Group>
-        <Card className="card-style" raised="true">
+        <Card className="card-style">
           <Card.Content>
             <Image floated="left" size='tiny' src={appLogo} />
 

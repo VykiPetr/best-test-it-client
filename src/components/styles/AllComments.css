@@ -1,0 +1,9 @@
+.comment-form{
+    margin: 50px 100px 50px 10px;
+    width: 50%;
+    border: 2px solid #92de8b;
+    box-shadow: 5px 5px 10px #888888;
+    border-radius: 10px;
+    padding: 2px;
+    background-color: #92de8b;
+}
