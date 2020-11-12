@@ -13,7 +13,7 @@ let flagList = [
 ];
 
 function AllComments(props) {
-  const [Comments, setComments] = useState([]);
+  const [comments, setComments] = useState([]);
   const [ProjectVersion, setProjectVersion] = useState("");
   //doing these 2 axios requests to make sure we have the project id and the comments on load
   useEffect(() => {
@@ -50,10 +50,15 @@ function AllComments(props) {
         commentStructure,
         { withCredentials: true }
       )
-      .then((response) => {
-        let allComments = [...Comments];
-        allComments.push(response.data);
-        setComments(allComments);
+      .then(() => {
+        axios
+        .get(`${API_URL}/comments/${props.match.params.projectId}`, {
+          withCredentials: true,
+        })
+        .then((response2) => {
+          console.log(response2.data);
+          setComments(response2.data.comments);
+        });
       });
   };
 
@@ -70,7 +75,7 @@ function AllComments(props) {
           labelPosition="right"
         />
       </Form>
-      {Comments.map((commentData, i) => {
+      {comments.map((commentData, i) => {
         return (
           <div>
             <CreateComment data={commentData} key={i} />

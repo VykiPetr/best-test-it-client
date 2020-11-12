@@ -8,6 +8,7 @@ function CreateComment(props) {
     <div>
       <Comment.Group>
         <Comment className="comment-container">
+          {/* <img src={props.data.userRefId.userImage}/> */}
           <Image
             size="mini"
             as='a'
