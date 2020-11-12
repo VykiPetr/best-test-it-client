@@ -10,7 +10,7 @@ function CreateComment(props) {
     <div className="comment-grouping">
       <Comment.Group className="comment-container">
         <Comment className="comment-container">
-          <Image size="mini" as="a" src={props.data.userRefId.userImage} />
+          <Image size="tiny" as="a" src={props.data.userRefId.userImage} />
 
           <Comment.Author as="a">
             {props.data.userRefId.username}

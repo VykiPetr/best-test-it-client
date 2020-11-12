@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../config";
 import AllComments from "./AllComments";
-import './styles/ProjectView.css'
+import "./styles/ProjectView.css";
 
 function ProjectView(props) {
   const [ProjectData, setProjectData] = useState({});
@@ -52,50 +52,57 @@ function ProjectView(props) {
   };
 
   return (
-    <div>
-      <div>
+    <div className='main-project-cont'>
+      <div className='description-comment-cont'>
         <div>
           <div>
-            <Link onClick={onLikeClick}>{Likes.length} Likes</Link>
-            <p>{ProjectData.projectVersion}</p>
+            <div>
+              <Link onClick={onLikeClick}>{Likes.length} Likes</Link>
+              <p>{ProjectData.projectVersion}</p>
+            </div>
+            <div>
+              <img
+                style={{ width: "50px", height: "50px" }}
+                src={ProjectData.appLogo}
+              />
+            </div>
+            <div>
+              {ProjectOwner ? (
+                <Link to={`/edit-project/${ProjectData._id}`}>Edit</Link>
+              ) : null}
+              {ProjectOwner ? (
+                <Link onClick={onDeleteClick}>Delete</Link>
+              ) : null}
+            </div>
           </div>
+          <h1>{ProjectData.appName}</h1>
           <div>
-            <img
-              style={{ width: "50px", height: "50px" }}
-              src={ProjectData.appLogo}
-            />
-          </div>
-          <div>
-            {ProjectOwner ? (
-              <Link to={`/edit-project/${ProjectData._id}`}>Edit</Link>
-            ) : null}
-            {ProjectOwner ? <Link onClick={onDeleteClick}>Delete</Link> : null}
+            <div>
+              tools used
+              {ProjectData.appTools}
+            </div>
+            <div>
+              <p>
+                made by{" "}
+                <Link to={`/profile/${ProjectData.userRefId}`}>User name</Link>
+              </p>
+              <p>{ProjectData.appDescription}</p>
+            </div>
           </div>
         </div>
-        <h1>{ProjectData.appName}</h1>
         <div>
           <div>
-            tools used
-            {ProjectData.appTools}
-          </div>
-          <div>
-            <p>
-              made by{" "}
-              <Link to={`/profile/${ProjectData.userRefId}`}>User name</Link>
-            </p>
-            <p>{ProjectData.appDescription}</p>
+            <AllComments project={ProjectData} />
           </div>
         </div>
       </div>
-      <div>
-        <div>
-          <iframe
-            src={ProjectData.deploymentLink}
-            title="Iframe Example"></iframe>
-        </div>
-        <div>
-          <AllComments project={ProjectData} />
-        </div>
+      <div className="iframe-cont">
+        <h2>Check it out <a target="_blank" href={`${ProjectData.deploymentLink}`}> Here! </a></h2>
+        
+        <iframe
+          className="iframe"
+          src={ProjectData.deploymentLink}
+          title="Iframe Example"></iframe>
       </div>
     </div>
   );

@@ -1,0 +1,24 @@
+.main-project-cont {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.description-comment-cont {
+    padding: 15px;
+    width: 60vw;
+}
+
+.iframe-cont {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+    height: 100vh;
+}
+.iframe {
+    width: 600px;
+    height: 100vh;
+}
