@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../config";
 import Select from "react-select";
-import './styles/EditProjectForm.css'
+import "./styles/EditProjectForm.css";
 
 const appToolOptions = [
   { value: "Javascript", label: "Javascript" },
@@ -49,7 +49,6 @@ export default function EditProjectForm(props) {
     axios
       .get(`${API_URL}/project/${props.match.params.projectId}`)
       .then((response) => {
-        console.log(response.data);
         const {
           _id,
           appLogo,

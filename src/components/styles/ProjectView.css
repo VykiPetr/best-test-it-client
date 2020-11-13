@@ -1,102 +1,106 @@
 .main-project-cont {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .description-comment-cont {
-    padding: 15px;
-    width: 50vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  padding: 15px;
+  width: 25vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .iframe-cont {
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: 50vw;
-    height: 100vh;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+  height: 100vh;
 }
 
 .iframe {
-    width: 600px;
-    height: 100vh;
+  width: 600px;
+  height: 100vh;
 }
 
 .descrciption-header {
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 50vw;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 25vw;
 }
 
 .like-delete-buttons {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 150px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 150px;
 }
 
 .image-container {
-    width: 150px;
+  width: 150px;
 }
 
 .like-version-container {
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-description-header {
-    background-color: #FFE3B3;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  background-color: #ffe3b3;
+  height: 40vh;
+  width: 50vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 15px;
 }
 
 .tools-made-by-desc-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 250px;
-    padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 250px;
+  padding: 15px;
 }
 
 .header {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .comment-cont {
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .all-comment-cont {
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .description-box {
-    overflow: auto;
-    height: 140px;
+  overflow: auto;
+  height: 140px;
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../config";
-import './styles/EditProfile.css'
+import "./styles/EditProfile.css";
 
 function EditProfile(props) {
   const [profile, setProfile] = useState({});
@@ -20,7 +20,6 @@ function EditProfile(props) {
         setProfile(response.data);
         setAboutMe(response.data.aboutMe);
         setMySkills(response.data.mySkills);
-        console.log(response.data.userImage);
         setProfileImage(response.data.userImage);
       });
     return () => {};

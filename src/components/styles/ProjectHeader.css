@@ -1,19 +1,19 @@
-.card-style{
-    background-color: #FFE3B3 !important;
-    height: 150px;
-    display: flex;
+.card-style {
+  background-color: #ffe3b3 !important;
+  height: 150px;
+  display: flex;
 }
 
 .ui {
-    padding: 15px;
+  padding: 15px;
 }
 
 .project-header-description {
-    overflow: auto;
-    height: 40px;
+  overflow: auto;
+  height: 40px;
 }
 
 .header-image {
-    height: 50px;
-    width: 100px;
+  height: 50px;
+  width: 100px;
 }
