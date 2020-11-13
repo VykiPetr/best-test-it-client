@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import './styles/AddProjectForm.css'
+import "./styles/AddProjectForm.css";
 
 // import {appToolOptions} from '../toolsOptions.json'
 const appToolOptions = [

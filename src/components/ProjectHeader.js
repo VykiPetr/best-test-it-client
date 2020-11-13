@@ -20,8 +20,9 @@ function ProjectHeader(props) {
       <Card.Group>
         <Card className="card-style">
           <Card.Content>
+          <div>
             <Image floated="left" className="header-image" src={appLogo} />
-
+          </div>
             <Card.Header textAlign="left">
               <Link to={`/project/${_id}`}>{appName} </Link>
             </Card.Header>

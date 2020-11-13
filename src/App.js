@@ -34,7 +34,6 @@ function App() {
   const handleSignIn = (e) => {
     e.preventDefault();
     const { email, password } = e.target;
-    console.log("Sign in", email.value, password.value);
     let signingIn = {
       email: email.value,
       password: password.value,
@@ -43,14 +42,12 @@ function App() {
       .post(`${API_URL}/signin`, signingIn, { withCredentials: true })
       .then((response) => {
         setLoggedInUser(response.data);
-        console.log("logged in", loggedInUser);
         history.push(`/profile/${response.data._id}`);
       });
   };
 
   const handleSignup = (e) => {
     e.preventDefault();
-    console.log("Sign up");
     const { username, email, password } = e.target;
     let signingUp = {
       username: username.value,
@@ -60,7 +57,6 @@ function App() {
     axios
       .post(`${API_URL}/signup`, signingUp, { withCredentials: true })
       .then((response) => {
-        console.log("signing up", response.data);
         setLoggedInUser(response.data);
         history.push(`/profile/${response.data._id}`);
       });
@@ -70,7 +66,6 @@ function App() {
     e.preventDefault();
     axios.post(`${API_URL}/logout`, {}, { withCredentials: true }).then(() => {
       setLoggedInUser(null);
-      console.log("loggin out", loggedInUser);
       history.push(`/`);
     });
   };
@@ -124,11 +119,9 @@ function App() {
     } else {
       appTools.push(appToolsData.value);
     }
-    console.log(appTools);
     //handling the image upload/linking
     if (uploadedAppLogo) {
       let imageFile = uploadedAppLogo.files[0];
-      console.log(uploadedAppLogo.files[0]);
       let uploadForm = new FormData();
       uploadForm.append("logoUrl", imageFile);
       axios
@@ -173,7 +166,6 @@ function App() {
 
   const handleProjectEdit = (e, projectId) => {
     e.preventDefault();
-    console.log(projectId);
     const {
       appName,
       appDescription,
@@ -220,7 +212,6 @@ function App() {
 
   const handleProfileEdit = (e, ProfileImage) => {
     e.preventDefault();
-    console.log(ProfileImage);
     const { aboutMe, mySkills, userImageLink, uploadedUserImage } = e.target;
     let userImage = "";
     if (uploadedUserImage && uploadedUserImage.files.length) {

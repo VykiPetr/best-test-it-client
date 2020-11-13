@@ -1,5 +1,6 @@
 import React from "react";
-import './styles/SignUp.css'
+import "./styles/SignUp.css";
+import { Input } from "semantic-ui-react";
 
 function SignUp(props) {
   return (

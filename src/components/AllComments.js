@@ -16,7 +16,7 @@ let flagList = [
 function AllComments(props) {
   const [comments, setComments] = useState([]);
   const [ProjectVersion, setProjectVersion] = useState("");
-  const [commentBox, setCommentBox] = useState('')
+  const [commentBox, setCommentBox] = useState("");
   //doing these 2 axios requests to make sure we have the project id and the comments on load
   useEffect(() => {
     axios
@@ -30,7 +30,6 @@ function AllComments(props) {
             withCredentials: true,
           })
           .then((response2) => {
-            console.log(response2.data);
             setComments(response2.data.comments);
           });
       });
@@ -59,18 +58,16 @@ function AllComments(props) {
           })
           .then((response2) => {
             setComments(response2.data.comments);
-            console.log(props)
-            setCommentBox('')
+            setCommentBox("");
           });
       });
   };
 
   const handleCommentBox = (e) => {
-    e.preventDefault()
-    console.log(e.target.value)
-    setCommentBox(e.target.value)
-  }
- 
+    e.preventDefault();
+    setCommentBox(e.target.value);
+  };
+
   return (
     <div className="all-comments-section">
       <Form className="comment-form" reply onSubmit={handleCommentCreation}>
@@ -86,7 +83,9 @@ function AllComments(props) {
         <Form.TextArea
           name="commentBody"
           placeholder="Enter your comment here"
-          onChange={ (e) => { handleCommentBox(e) }}
+          onChange={(e) => {
+            handleCommentBox(e);
+          }}
           value={commentBox}
         />
         <Button

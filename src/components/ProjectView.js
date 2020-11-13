@@ -11,14 +11,21 @@ function ProjectView(props) {
   const [ProjectOwner, setProjectOwner] = useState(false);
   const [Likes, setLikes] = useState([]);
   const [tools, setTools] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     axios
       .get(`${API_URL}/project/${props.match.params.projectId}`)
       .then((response) => {
+        console.log(response);
+        console.log(response.data.userRefId.username);
+
         axios
           .get(`${API_URL}/user`, { withCredentials: true })
           .then((response2) => {
+            setUserName(response.data.userRefId.username);
+            setUserId(response.data.userRefId._id);
             setLoggedInUser(response2.data);
             setProjectData(response.data);
             setLoggedInUser(props.loggedIn);
@@ -43,7 +50,6 @@ function ProjectView(props) {
 
   const onLikeClick = (e) => {
     e.preventDefault();
-    console.log("like button clicked");
     let data = {
       userId: LoggedInUser,
       projectId: ProjectData._id,
@@ -51,16 +57,13 @@ function ProjectView(props) {
     axios
       .post(`${API_URL}/projectLike`, data, { withCredentials: true })
       .then((response) => {
-        console.log(response);
         setLikes(response.data.likes);
       });
   };
 
   const onDeleteClick = (e) => {
     e.preventDefault();
-    console.log("delete button clicked");
   };
-
   return (
     <div className="main-project-cont">
       <div className="description-comment-cont">

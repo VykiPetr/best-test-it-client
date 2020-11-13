@@ -17,14 +17,12 @@ function ProfileView(props) {
       })
       .then((response2) => {
         setProfile(response2.data);
-        console.log("profile view loaded this", profile);
         axios
           .get(`${API_URL}/userProjects/${props.match.params.profileId}`, {
             withCredentials: true,
           })
           .then((response3) => {
             setUserProjects(response3.data);
-            console.log("we got these projects", response3);
             if (response2.data._id === response._id) {
               setLoggedInUser(true);
             } else {
@@ -40,15 +38,12 @@ function ProfileView(props) {
       axios
         .get(`${API_URL}/user`, { withCredentials: true })
         .then((response) => {
-          console.log("not else");
           setLoggedInUser(response.data);
           getProfileInfo(response.data);
         });
     } else {
-      console.log("else");
       getProfileInfo(props.loggedIn);
     }
-    console.log(props.match.params);
 
     return () => {};
   }, []);
@@ -66,18 +61,11 @@ function ProfileView(props) {
           alt="profile avatar"
         />
         <div>
-          <h2>{profile.username}</h2>
-          {/* <button>Send Message</button> */}
-          {LoggedInUser ? (
-            <Link to={`/edit-profile/${props.loggedIn._id}`}>Edit profile</Link>
-          ) : null}
+          <div className="profile-desc">{profile.mySkills}</div>
+          <article>
+            <p className="profile-desc">{profile.aboutMe}</p>
+          </article>
         </div>
-      </div>
-      <div>
-        <div>{profile.skills}</div>
-        <article>
-          <p>{profile.aboutMe}</p>
-        </article>
       </div>
       <h2>{profile.username} Projects</h2>
       <div className="projects-div">
@@ -85,7 +73,11 @@ function ProfileView(props) {
           return <ProjectHeader project={project} key={i} />;
         })}
       </div>
-      {LoggedInUser ? <Link to="/add-project">Add a project </Link> : null}
+      {LoggedInUser ? (
+        <Link className="textStyle" to="/add-project">
+          Add a project{" "}
+        </Link>
+      ) : null}
     </div>
   );
 }
