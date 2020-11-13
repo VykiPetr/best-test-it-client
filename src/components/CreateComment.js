@@ -7,8 +7,6 @@ function CreateComment(props) {
   console.log(props.data.userRefId);
   console.log(props.data);
 
-  
-
   return (
     <div className="comment-grouping">
       <Comment.Group className="comment-container">
@@ -16,16 +14,20 @@ function CreateComment(props) {
           <Image size="tiny" as="a" src={props.data.userRefId.userImage} />
 
           <Comment.Author as="a">
-          <Link to={`/profile/${props.data.userRefId._id}`}>
-            {props.data.userRefId.username}
+            <Link to={`/profile/${props.data.userRefId._id}`}>
+              {props.data.userRefId.username}
             </Link>
           </Comment.Author>
           <Comment.Metadata>
-          <div>Flag: {props.data.commentFlag}</div>
-          <div>App Version: v.{props.data.projectVersion}</div>
-          <div>Posted: </div>
+            <div>Flag: {props.data.commentFlag}</div>
+            <div>App Version: v.{props.data.projectVersion}</div>
+            <div>Posted: </div>
           </Comment.Metadata>
-          <Comment.Text>{props.data.commentBody}</Comment.Text>
+          <div className="comment-text-box">
+            <Comment.Text className="comment-text">
+              {props.data.commentBody}
+            </Comment.Text>
+          </div>
         </Comment>
       </Comment.Group>
     </div>

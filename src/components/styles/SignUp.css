@@ -1,0 +1,9 @@
+.password-message{
+    width: 500px;
+    background-color:  #92de8b;
+    border: 1px solid  #0ab68b;
+    box-shadow: 5px 5px 10px #888888;
+    border-radius: 25px;
+    margin: 20px 20px 20px 20px;
+    padding: 10px;
+}

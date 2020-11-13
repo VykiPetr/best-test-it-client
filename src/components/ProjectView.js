@@ -36,7 +36,7 @@ function ProjectView(props) {
   const makeTools = (tools) => {
     let toolsString = "";
     for (let i = 0; i < tools.length; i++) {
-      toolsString += tools[i] + " ";
+      toolsString += tools[i] +","+" ";
     }
     return toolsString;
   };
@@ -75,22 +75,22 @@ function ProjectView(props) {
               ) : null}
             </div>
             <div className="image-container">
-              <img style={{ width: "150px" }} src={ProjectData.appLogo} />
+              <img className="project-img" style={{ width: "150px" }} src={ProjectData.appLogo} />
             </div>
             <div className="like-version-container">
-              <Link onClick={onLikeClick}>{Likes.length} Likes</Link>
-              <p>{ProjectData.projectVersion}</p>
+              <Link onClick={onLikeClick}>{Likes.length} - Likes</Link>
+              <p>Version - {ProjectData.projectVersion}</p>
             </div>
           </div>
           <h1 className="header">{ProjectData.appName}</h1>
           <div className="tools-made-by-desc-container">
             <div>
-              tools used
+              Tools used - 
               {tools}
             </div>
             <div>
               <p>
-                made by{" "}
+                Made by{" "}
                 <Link to={`/profile/${ProjectData.userRefId}`}>User name</Link>
               </p>
               <p className="description-box">{ProjectData.appDescription}</p>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ProjectHeader from "./ProjectHeader";
 import { API_URL } from "../config";
-import './styles/ProfileView.css'
+import "./styles/ProfileView.css";
 
 function ProfileView(props) {
   const [profile, setProfile] = useState({});
@@ -60,6 +60,7 @@ function ProfileView(props) {
     <div className="main-profile-cont">
       <div>
         <img
+          className="profile-img"
           src={profile.userImage}
           style={{ width: "50px", height: "50px" }}
           alt="profile avatar"
@@ -80,9 +81,9 @@ function ProfileView(props) {
       </div>
       <h2>{profile.username} Projects</h2>
       <div className="projects-div">
-      {userProjects.map((project, i) => {
-        return <ProjectHeader project={project} key={i} />;
-      })}
+        {userProjects.map((project, i) => {
+          return <ProjectHeader project={project} key={i} />;
+        })}
       </div>
       {LoggedInUser ? <Link to="/add-project">Add a project </Link> : null}
     </div>
