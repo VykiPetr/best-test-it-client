@@ -20,7 +20,7 @@ function ProjectHeader(props) {
       <Card.Group>
         <Card className="card-style">
           <Card.Content>
-            <Image floated="left" size='tiny' src={appLogo} />
+            <Image floated="left" className="header-image" src={appLogo} />
 
             <Card.Header textAlign="left">
               <Link to={`/project/${_id}`}>{appName} </Link>
@@ -28,7 +28,7 @@ function ProjectHeader(props) {
             <Link to={`/profile/${userRefId._id}`}>
               <Card.Meta floated="right">{userRefId.username}</Card.Meta>
             </Link>
-            <Card.Description>{appDescription}</Card.Description>
+            <Card.Description className="project-header-description">{appDescription}</Card.Description>
             <Card.Meta textAlign="right">{likes.length} - Likes</Card.Meta>
           </Card.Content>
         </Card>

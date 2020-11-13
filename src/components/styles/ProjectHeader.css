@@ -7,4 +7,13 @@
 .ui {
     padding: 15px;
 }
-  
+
+.project-header-description {
+    overflow: auto;
+    height: 40px;
+}
+
+.header-image {
+    height: 50px;
+    width: 100px;
+}

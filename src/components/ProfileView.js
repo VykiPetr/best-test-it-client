@@ -57,7 +57,7 @@ function ProfileView(props) {
     return null;
   }
   return (
-    <div>
+    <div className="main-profile-cont">
       <div>
         <img
           src={profile.userImage}
@@ -79,9 +79,11 @@ function ProfileView(props) {
         </article>
       </div>
       <h2>{profile.username} Projects</h2>
+      <div className="projects-div">
       {userProjects.map((project, i) => {
         return <ProjectHeader project={project} key={i} />;
       })}
+      </div>
       {LoggedInUser ? <Link to="/add-project">Add a project </Link> : null}
     </div>
   );
