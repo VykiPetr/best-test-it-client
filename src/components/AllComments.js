@@ -64,7 +64,7 @@ function AllComments(props) {
   };
 
   return (
-    <div>
+    <div className="all-comments-section">
       <Form className="comment-form" reply onSubmit={handleCommentCreation}>
         <Select
           className="basic-single"
@@ -75,7 +75,10 @@ function AllComments(props) {
           placeholder="What category is your comment?"
         />
 
-        <Form.TextArea name="commentBody" placeholder="Enter your comment here"/>
+        <Form.TextArea
+          name="commentBody"
+          placeholder="Enter your comment here"
+        />
         <Button
           content="Add Comment"
           labelPosition="left"
@@ -83,16 +86,16 @@ function AllComments(props) {
           primary
         />
       </Form>
-      
-      {comments.map((commentData, i) => {
-        return (
-          <div>
-            <CreateComment data={commentData} key={i} />
-          </div>
-        );
-      })}
+      <div className="comments-row">
+        {comments.map((commentData, i) => {
+          return (
+            <div>
+              <CreateComment data={commentData} key={i} />
+            </div>
+          );
+        })}
       </div>
-    
+    </div>
   );
 }
 
