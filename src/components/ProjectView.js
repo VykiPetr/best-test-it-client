@@ -96,7 +96,9 @@ function ProjectView(props) {
               <p>
                 made by <Link to={`/profile/${userId}`}>{userName}</Link>
               </p>
+              
               <p className="description-box">{ProjectData.appDescription}</p>
+              
             </div>
           </div>
         </div>

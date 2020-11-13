@@ -40,6 +40,7 @@
   justify-content: center;
   align-items: center;
   width: 25vw;
+  
 }
 
 .like-delete-buttons {
@@ -61,6 +62,7 @@
     border: 1px solid  #FFE3B3;
     border-radius: 100px;
     box-shadow: 5px 5px 10px #888888;
+    object-fit: contain;
 
 }
 
@@ -74,7 +76,7 @@
 
 .main-description-header {
   background-color: #ffe3b3;
-  height: 40vh;
+  height: 60vh;
   width: 50vw;
   justify-content: center;
   align-items: center;
@@ -114,6 +116,6 @@
 }
 
 .description-box {
-  overflow: auto;
   height: 140px;
+  overflow: auto;
 }
