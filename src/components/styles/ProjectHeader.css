@@ -1,8 +1,7 @@
-.card-style{
-    background-color: #FFE3B3 !important;
-    height: 150px;
-    display: flex;
-    
+.card-style {
+  background-color: #ffe3b3 !important;
+  height: 150px;
+  display: flex;
 }
 
 .ui {

@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles/SignIn.css";
+import { Input } from "semantic-ui-react";
 
 function SignIn(props) {
   return (

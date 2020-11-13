@@ -15,8 +15,45 @@
 }
 
 .projects-div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
+.image-and-name-cont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.profile-image {
+  width: 150px;
+  border-radius: 10px;
+}
+
+.profile-desc {
+  display: flex;
+  justify-content: center;
+  width: 35vw;
+  align-items: center;
+  overflow: auto;
+  height: 40px;
+}
+
+.textStyle {
+  text-decoration: none;
+  color: white;
+  text-shadow: 1px 1px black;
+  border-style: solid;
+  border-radius: 5px;
+  width: 30vh;
+  background-color: #ffe3b3;
+  text-align: center;
+  font-size: larger;
+  margin: 5px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

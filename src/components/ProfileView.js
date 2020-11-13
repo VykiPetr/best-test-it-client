@@ -53,13 +53,23 @@ function ProfileView(props) {
   }
   return (
     <div className="main-profile-cont">
-      <div>
-        <img
-          className="profile-img"
-          src={profile.userImage}
-          style={{ width: "50px", height: "50px" }}
-          alt="profile avatar"
-        />
+      <div className="top-cont">
+        <div className="image-and-name-cont">
+          <img
+            src={profile.userImage}
+            className="profile-image"
+            alt="profile avatar"
+          />
+          <div className="username-edit-button-cont">
+            <h2>{profile.username}</h2>
+            {/* <button>Send Message</button> */}
+            {LoggedInUser ? (
+              <Link to={`/edit-profile/${props.loggedIn._id}`}>
+                Edit profile
+              </Link>
+            ) : null}
+          </div>
+        </div>
         <div>
           <div className="profile-desc">{profile.mySkills}</div>
           <article>

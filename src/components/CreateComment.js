@@ -4,9 +4,6 @@ import { Button, Comment, Form, Image } from "semantic-ui-react";
 import "./styles/CreateComments.css";
 
 function CreateComment(props) {
-  console.log(props.data.userRefId);
-  console.log(props.data);
-
   return (
     <div className="comment-grouping">
       <Comment.Group className="comment-container">

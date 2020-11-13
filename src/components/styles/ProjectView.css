@@ -1,10 +1,9 @@
 .main-project-cont {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .description-comment-cont {
@@ -74,12 +73,15 @@
 }
 
 .main-description-header {
-    background-color: #FFE3B3;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 25px;
-    box-shadow: 5px 5px 10px #888888;
+  background-color: #ffe3b3;
+  height: 40vh;
+  width: 50vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 15px;
+  border-radius: 25px;
+  box-shadow: 5px 5px 10px #888888;
 }
 
 .tools-made-by-desc-container {
