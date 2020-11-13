@@ -16,6 +16,7 @@ let flagList = [
 function AllComments(props) {
   const [comments, setComments] = useState([]);
   const [ProjectVersion, setProjectVersion] = useState("");
+  const [commentBox, setCommentBox] = useState('')
   //doing these 2 axios requests to make sure we have the project id and the comments on load
   useEffect(() => {
     axios
@@ -38,9 +39,9 @@ function AllComments(props) {
 
   const handleCommentCreation = (e) => {
     e.preventDefault();
-    const { commentBody, flag } = e.target;
+    const { flag } = e.target;
     let commentStructure = {
-      commentBody: commentBody.value,
+      commentBody: commentBox,
       commentFlag: flag.value,
       creatorCheck: false,
       projectVersion: ProjectVersion,
@@ -57,12 +58,19 @@ function AllComments(props) {
             withCredentials: true,
           })
           .then((response2) => {
-            console.log(response2.data);
             setComments(response2.data.comments);
+            console.log(props)
+            setCommentBox('')
           });
       });
   };
 
+  const handleCommentBox = (e) => {
+    e.preventDefault()
+    console.log(e.target.value)
+    setCommentBox(e.target.value)
+  }
+ 
   return (
     <div className="all-comments-section">
       <Form className="comment-form" reply onSubmit={handleCommentCreation}>
@@ -78,6 +86,8 @@ function AllComments(props) {
         <Form.TextArea
           name="commentBody"
           placeholder="Enter your comment here"
+          onChange={ (e) => { handleCommentBox(e) }}
+          value={commentBox}
         />
         <Button
           content="Add Comment"
@@ -89,7 +99,7 @@ function AllComments(props) {
       <div className="comments-row">
         {comments.map((commentData, i) => {
           return (
-            <div>
+            <div className="comment-group">
               <CreateComment data={commentData} key={i} />
             </div>
           );
