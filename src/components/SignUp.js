@@ -22,6 +22,20 @@ function SignUp(props) {
               type="password"
               placeholder="At least 8 characters with an uppercase letter, number, special character."></Input>
           </div>
+          <div className="password-message">
+            <p>
+              You can enter any password, password format check has been
+              disabled for testing
+            </p>
+            <p>
+              You can view the code for checking password format here{" "}
+              <a
+                target="_blank"
+                href="https://github.com/VykiPetr/best-test-it-server">
+                Github repository
+              </a>
+            </p>
+          </div>
           <button className="textStyle" type="submit">
             Sign Up
           </button>

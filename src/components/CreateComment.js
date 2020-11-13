@@ -20,7 +20,11 @@ function CreateComment(props) {
             <div>App Version: v.{props.data.projectVersion}</div>
             <div>Posted: </div>
           </Comment.Metadata>
-          <Comment.Text>{props.data.commentBody}</Comment.Text>
+          <div className="comment-text-box">
+            <Comment.Text className="comment-text">
+              {props.data.commentBody}
+            </Comment.Text>
+          </div>
         </Comment>
       </Comment.Group>
     </div>
