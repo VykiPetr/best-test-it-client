@@ -8,6 +8,14 @@
   background-color: #92de8b;
 }
 
+.basic-single {
+  width: 100%;
+}
+
+.field {
+  width: 100%;
+}
+
 .all-comments-section {
   display: flex;
   justify-content: center;

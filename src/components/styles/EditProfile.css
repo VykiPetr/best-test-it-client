@@ -1,0 +1,79 @@
+.main-cont {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-cont {
+    padding: 15px;
+    border-style: solid;
+    width: 400px;
+    border-color: #ffe3b3;
+    border-radius: 15px;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .textStyle {
+    text-decoration: none;
+    color: white;
+    text-shadow: 1px 1px black;
+    border-style: solid;
+    border-radius: 5px;
+    width: 30vh;
+    background-color: #ffe3b3;
+    text-align: center;
+    font-size: larger;
+    margin: 5px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .textStyle:hover {
+    text-decoration: none;
+    color: blueviolet;
+    text-shadow: 1px 1px black;
+    border-style: solid;
+    border-radius: 5px;
+    width: 30vh;
+    background-color: #ffe3b3;
+    text-align: center;
+    font-size: larger;
+    margin: 5px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .password-message {
+    width: 500px;
+    background-color: #92de8b;
+    border: 1px solid #0ab68b;
+    box-shadow: 5px 5px 10px #888888;
+    border-radius: 25px;
+    margin: 20px 20px 20px 20px;
+    padding: 10px;
+  }
+
+  .image-handler-cont {
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+  }
+
+  .upload-link-handler-cont {
+    height: 250px;
+  }
+
+  .input-for-upload {
+      margin: 1px;
+      padding: 1px
+  }
